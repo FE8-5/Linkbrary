@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const FooterContainer = styled.div`
   max-width: 100%;
@@ -13,10 +14,11 @@ export const FooterContainer = styled.div`
 
 export const FooterBox = styled.div`
   padding: 32px;
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
     padding: 32px 104px 108px;
   }
-  @media screen and (min-width: 1200px) {
+
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
     padding: 32px 104px 108px;
   }
 `;
@@ -37,10 +39,10 @@ export const SinceText = styled.p`
   color: #676767;
   font-size: 16px;
   font-weight: 400;
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
     position: static;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
     position: static;
   }
 `;
