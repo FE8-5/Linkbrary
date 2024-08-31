@@ -1,0 +1,14 @@
+:root {
+  /* 색상 */
+  --primary: #6d6afe;
+  --secondary: #6ae3fe; /* 그라데이션 */
+  --red: #ff5b56;
+  --black: #111322;
+  --white: #ffffff;
+
+  --gray10: #f0f6ff;
+  --gray20: #e7effb;
+  --gray30: #ccd5e3;
+  --gray40: #9fa6b2;
+  --gray50: #3e3e43;
+}
