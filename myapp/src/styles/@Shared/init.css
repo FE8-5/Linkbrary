@@ -17,4 +17,7 @@
   --lightgray: #d6d6d6; /* 비활성화 상태 배경색 */
   --active-start: #4a4a9f; /* 버튼 클릭 시 그라데이션 시작 */
   --active-end: #4a8dbf; /* 버튼 클릭 시 그라데이션 끝 */
+
+  /* 폴더 버튼 관련 색상 */
+  --lightBlue: #e6e6ff; /* 버튼 호버 시 글자색 */
 }
