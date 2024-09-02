@@ -22,9 +22,9 @@ const ButtonExamples: React.FC = () => {
         <h2>Small Button</h2>
         <Button
           onClick={() => alert('Small Button Clicked!')} // 버튼 클릭 시 알림
-          size={{ width: '80px', height: '37px' }} // 버튼의 너비와 높이를 설정합니다.
-          padding={{ vertical: '10px', horizontal: '16px' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
-          fontSize="14px" // 버튼 텍스트의 폰트 크기를 설정합니다.
+          size={{ width: '8rem', height: '3.7rem' }} // 버튼의 너비와 높이를 설정합니다.
+          padding={{ vertical: '1rem', horizontal: '1.6rem' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
+          fontSize="1.4rem" // 버튼 텍스트의 폰트 크기를 설정합니다.
         >
           Small
         </Button>
@@ -35,9 +35,9 @@ const ButtonExamples: React.FC = () => {
         <h2>Medium Button</h2>
         <Button
           onClick={() => alert('Medium Button Clicked!')} // 버튼 클릭 시 알림
-          size={{ width: '325px', height: '53px' }} // 버튼의 너비와 높이를 설정합니다.
-          padding={{ vertical: '16px', horizontal: '20px' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
-          fontSize="18px" // 버튼 텍스트의 폰트 크기를 설정합니다.
+          size={{ width: '32.5rem', height: '5.3rem' }} // 버튼의 너비와 높이를 설정합니다.
+          padding={{ vertical: '1.6rem', horizontal: '2rem' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
+          fontSize="1.8rem" // 버튼 텍스트의 폰트 크기를 설정합니다.
         >
           Medium
         </Button>
@@ -48,9 +48,9 @@ const ButtonExamples: React.FC = () => {
         <h2>Large Button</h2>
         <Button
           onClick={() => alert('Large Button Clicked!')} // 버튼 클릭 시 알림
-          size={{ width: '400px', height: '53px' }} // 버튼의 너비와 높이를 설정합니다.
-          padding={{ vertical: '16px', horizontal: '20px' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
-          fontSize="18px" // 버튼 텍스트의 폰트 크기를 설정합니다.
+          size={{ width: '40rem', height: '5.3rem' }} // 버튼의 너비와 높이를 설정합니다.
+          padding={{ vertical: '1.6rem', horizontal: '2rem' }} // 버튼의 수직 및 수평 패딩을 설정합니다.
+          fontSize="1.8rem" // 버튼 텍스트의 폰트 크기를 설정합니다.
         >
           Large
         </Button>

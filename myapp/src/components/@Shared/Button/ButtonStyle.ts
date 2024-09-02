@@ -13,12 +13,12 @@ export const StyledButton = styled.button<ButtonProps>`
         : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태일 때 그라데이션 배경
   color: var(--white);
   border: none;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   width: ${props => props.size?.width || 'auto'}; // 버튼의 너비
   height: ${props => props.size?.height || 'auto'}; // 버튼의 높이
-  padding: ${props => `${props.padding?.vertical || '10px'} ${props.padding?.horizontal || '16px'}`};
+  padding: ${props => `${props.padding?.vertical || '1rem'} ${props.padding?.horizontal || '1.6rem'}`};
   // padding을 수직(vertical)과 수평(horizontal)으로 분리하여 설정
-  font-size: ${props => props.fontSize || '14px'}; // 버튼 텍스트의 폰트 크기
+  font-size: ${props => props.fontSize || '1.4rem'}; // 버튼 텍스트의 폰트 크기
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')}; // 버튼의 활성화 여부에 따라 마우스 커서를 변경
   opacity: ${props => (props.disabled ? 0.65 : 1)}; // 버튼의 불투명도
   transition: background-color 0.3s ease; // 배경 색상 변경 시 애니메이션
