@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
+import { BREAKPOINTS } from '../../../../constatnts/Breakpoint';
 
 // 배경색과 글자색은 props로 받아 동적으로 설정됩니다.
 export const StyledFolderButton = styled.button<{ backgroundColor: string; color: string }>`
