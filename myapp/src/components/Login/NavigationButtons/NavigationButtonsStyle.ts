@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// 로고 버튼과 회원가입 페이지 이동 버튼을 포함하는 컴포넌트
 export const StyledNavigationButtons = styled.div`
   display: flex;
   flex-direction: column;
