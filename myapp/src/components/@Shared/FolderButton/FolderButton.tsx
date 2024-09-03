@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyledFolderButton } from './FolderButtonStyle';
+import { ACTIVE_BACKGROUND_COLOR, DEFAULT_BACKGROUND_COLOR } from '../../../constatnts/FolderButtonColor';
+import { ACTIVE_TEXT_COLOR, DEFAULT_TEXT_COLOR } from '../../../constatnts/FolderButtonColor';
 
 // FolderButton에서 사용할 데이터 타입을 정의
 interface FolderButtonData {
@@ -42,8 +44,8 @@ const FolderButton: React.FC<FolderButtonProps> = ({ onClick, children, data, on
   return (
     <StyledFolderButton
       onClick={handleClick}
-      backgroundColor={isActive ? 'var(--primary)' : 'var(--white)'} // 활성화 상태와 기본 상태 배경색 설정
-      color={isActive ? 'var(--white)' : '#000000'} // 활성화 상태와 기본 상태 텍스트 색상 설정
+      backgroundColor={isActive ? ACTIVE_BACKGROUND_COLOR : DEFAULT_BACKGROUND_COLOR} // 활성화 상태와 기본 상태 배경색 설정
+      color={isActive ? ACTIVE_TEXT_COLOR : DEFAULT_TEXT_COLOR} // 활성화 상태와 기본 상태 텍스트 색상 설정
     >
       {children} {/* 버튼에 표시될 내용 (폴더 이름) */}
       {/* 클릭 수를 표시할 수도 있습니다. */}
