@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { AuthRes, UserRes } from '../../types/authTypes';
-import { replaceUrlParams } from '../../utils/apiUtils';
-import instance from '../axios';
+import { privateInstance, publicInstance } from '../axios';
 
 // Auth
 
 export const signUp = async (email: string, password: string, name: string): Promise<AuthRes> => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
       url: ENDPOINTS.signUp,
       data: {
@@ -26,7 +25,7 @@ export const signUp = async (email: string, password: string, name: string): Pro
 
 export const signIn = async (email: string, password: string): Promise<AuthRes> => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
       url: ENDPOINTS.signIn,
       data: {
@@ -43,9 +42,9 @@ export const signIn = async (email: string, password: string): Promise<AuthRes> 
 
 export const signUpWithProvider = async (name: string, token: string, redirectUri: string, provider: string) => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
-      url: replaceUrlParams(ENDPOINTS.signUpWithProvider, { provider }),
+      url: ENDPOINTS.signUpWithProvider(provider),
       data: {
         name,
         token,
@@ -61,9 +60,9 @@ export const signUpWithProvider = async (name: string, token: string, redirectUr
 
 export const signInWithProvider = async (token: string, redirectUri: string, provider: string) => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
-      url: replaceUrlParams(ENDPOINTS.signInWithProvider, { provider }),
+      url: ENDPOINTS.signInWithProvider(provider),
       data: {
         token,
         redirectUri,
@@ -79,7 +78,7 @@ export const signInWithProvider = async (token: string, redirectUri: string, pro
 // OAuth
 export const setOauthApps = async (provider: string, appKey: string) => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
       url: ENDPOINTS.setOauthApps,
       data: {
@@ -98,7 +97,7 @@ export const setOauthApps = async (provider: string, appKey: string) => {
 
 export const getAllUsers = async (): Promise<UserRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getAllUsers,
     });
@@ -111,7 +110,7 @@ export const getAllUsers = async (): Promise<UserRes> => {
 
 export const checkDuplicateEmail = async (email: string) => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'POST',
       url: ENDPOINTS.checkDuplicateEmail,
       data: {

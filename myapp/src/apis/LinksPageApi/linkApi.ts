@@ -1,13 +1,12 @@
 import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { LinkRes } from '../../types/linkTypes';
-import { replaceUrlParams } from '../../utils/apiUtils';
-import instance from '../axios';
+import { privateInstance, publicInstance } from '../axios';
 
-export const getLinksByFolder = async (folderId: string, page: number, pageSize: number): Promise<LinkRes> => {
+export const getLinksByFolder = async (folderId: number, page: number, pageSize: number): Promise<LinkRes> => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'GET',
-      url: replaceUrlParams(ENDPOINTS.getLinksByFolder, { folderId }),
+      url: ENDPOINTS.getLinksByFolder(folderId),
       params: {
         page,
         pageSize,
@@ -22,7 +21,7 @@ export const getLinksByFolder = async (folderId: string, page: number, pageSize:
 
 export const getAllLinks = async (page: number, pageSize: number, search: string): Promise<LinkRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getAllLinks,
       params: {
@@ -40,7 +39,7 @@ export const getAllLinks = async (page: number, pageSize: number, search: string
 
 export const addLink = async (url: string, folderId: number): Promise<LinkRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'POST',
       url: ENDPOINTS.addLink,
       data: {
@@ -57,9 +56,9 @@ export const addLink = async (url: string, folderId: number): Promise<LinkRes> =
 
 export const deleteLink = async (linkId: number) => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'DELETE',
-      url: replaceUrlParams(ENDPOINTS.deleteLink, { linkId }),
+      url: ENDPOINTS.deleteLink(linkId),
     });
     return response.data;
   } catch (error) {
@@ -70,9 +69,9 @@ export const deleteLink = async (linkId: number) => {
 
 export const setFavoriteLink = async (linkId: number, favorite: boolean): Promise<LinkRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'PUT',
-      url: replaceUrlParams(ENDPOINTS.deleteLink, { linkId }),
+      url: ENDPOINTS.deleteLink(linkId),
       data: {
         favorite,
       },
@@ -86,7 +85,7 @@ export const setFavoriteLink = async (linkId: number, favorite: boolean): Promis
 
 export const getFavorites = async (): Promise<LinkRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getFavorites,
     });

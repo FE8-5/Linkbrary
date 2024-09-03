@@ -1,24 +1,23 @@
 import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { GetAllFoldersRes, OtherFolderRes } from '../../types/folderTypes';
-import { replaceUrlParams } from '../../utils/apiUtils';
-import instance from '../axios';
+import { privateInstance, publicInstance } from '../axios';
 
 export const getAllFolders = async (): Promise<GetAllFoldersRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getAllFolders,
     });
     return response.data;
   } catch (error) {
-    console.error('error: ', error);
+    console.error(error);
     throw error;
   }
 };
 
 export const addFolder = async (folderName: string): Promise<OtherFolderRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'Post',
       url: ENDPOINTS.addFolder,
       data: {
@@ -34,9 +33,9 @@ export const addFolder = async (folderName: string): Promise<OtherFolderRes> => 
 
 export const getFolder = async (folderId: number): Promise<OtherFolderRes> => {
   try {
-    const response = await instance({
+    const response = await publicInstance({
       method: 'GET',
-      url: replaceUrlParams(ENDPOINTS.getFolder, { folderId }),
+      url: ENDPOINTS.getFolder(folderId),
     });
     return response.data;
   } catch (error) {
@@ -47,9 +46,9 @@ export const getFolder = async (folderId: number): Promise<OtherFolderRes> => {
 
 export const deleteFolder = async (folderId: number) => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'DELETE',
-      url: replaceUrlParams(ENDPOINTS.deleteFolder, { folderId }),
+      url: ENDPOINTS.deleteFolder(folderId),
     });
   } catch (error) {
     console.error('error: ', error);
@@ -59,9 +58,9 @@ export const deleteFolder = async (folderId: number) => {
 
 export const updateFolder = async (folderId: number, name: string): Promise<OtherFolderRes> => {
   try {
-    const response = await instance({
+    const response = await privateInstance({
       method: 'PUT',
-      url: replaceUrlParams(ENDPOINTS.updateFolder, { folderId }),
+      url: ENDPOINTS.updateFolder(folderId),
       data: {
         name,
       },
