@@ -1,20 +1,16 @@
 import styled from 'styled-components';
-import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 // 로그인 폼 스타일
 export const StyledLoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  max-width: 32.5rem; // 모바일에서 최대 너비
+  width: 100%;
   margin: 0 auto; // 폼을 중앙에 배치
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    max-width: 40rem; // 태블릿 및 데스크탑에서 최대 너비
-  }
 `;
 
 // 로그인 폼 그룹 스타일
 export const LoginFormGroup = styled.div`
+  width: 100%;
   margin-bottom: 2.4rem; // 그룹 간 간격
 `;
 
@@ -29,12 +25,18 @@ export const Label = styled.label`
 // 입력 필드 스타일
 export const Input = styled.input`
   width: 100%;
-  border: 1px solid var(--primary);
-  border-radius: 0.8rem;
+  padding: 1.8rem 1.5rem;
   font-size: 1.6rem;
+  border: 1px solid var(--gray30);
+  border-radius: 0.8rem;
+  outline: none;
 
   &::placeholder {
     color: #373740; // 플레이스홀더 텍스트 색상
+  }
+
+  &:focus {
+    border-color: var(--primary); // 포커스 시 테두리 색상
   }
 `;
 

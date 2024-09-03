@@ -44,7 +44,7 @@ const LoginForm: React.FC = () => {
             type="button"
             onClick={() => setShowPassword(prev => !prev)} // 아이콘 클릭 시 가시성 토글
           >
-            {showPassword ? <EyeOff size={16} /> : <Eye size={16} />} {/* 아이콘 변경 */}
+            {showPassword ? <Eye size={16} /> : <EyeOff size={16} />} {/* 아이콘 변경 */}
           </TogglePasswordButton>
         </PasswordArea>
       </LoginFormGroup>

@@ -8,6 +8,7 @@ export const StyledSocialLogin = styled.div`
   background-color: var(--cyanBlue);
   color: #373740; // 피그마 기준으로 설정했지만, 검정색이 더 나아보이긴합니다.
   border: 0.1rem solid var(--gray30);
+  border-radius: 0.8rem;
   width: 100%;
   height: 6.6rem;
   padding: 1.2rem 2.4rem;
@@ -24,7 +25,6 @@ export const IconButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  margin: 0 1.6rem; // 버튼 사이의 간격
 
   img {
     width: 4.2rem;
