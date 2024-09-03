@@ -10,7 +10,6 @@ interface FolderButtonData {
   description: string;
   imageSource: string;
   createdAt: number;
-  count: number; // 클릭 카운트 (임시로 넣어두었습니다.)
 }
 
 // FolderButton이 사용하는 데이터 배열의 타입을 정의합니다.
@@ -26,7 +25,7 @@ interface FolderButtonProps {
 }
 
 // FolderButton 컴포넌트 정의
-const FolderButton: React.FC<FolderButtonProps> = ({ onClick, children, data, onDataChange, itemId }) => {
+const FolderButton: React.FC<FolderButtonProps> = ({ onClick, children }) => {
   // 버튼의 활성화 상태 관리
   const [isActive, setIsActive] = useState(false);
 
@@ -34,11 +33,6 @@ const FolderButton: React.FC<FolderButtonProps> = ({ onClick, children, data, on
   const handleClick = () => {
     setIsActive(!isActive); // 활성화 상태 토글
     onClick(); // 클릭 시 전달된 콜백 호출
-
-    // 데이터 변경 로직
-    const newData = data.map(item => (item.id === itemId ? { ...item, count: item.count + 1 } : item));
-
-    onDataChange(newData); // 데이터 변경 콜백 호출
   };
 
   return (
@@ -48,8 +42,6 @@ const FolderButton: React.FC<FolderButtonProps> = ({ onClick, children, data, on
       color={isActive ? ACTIVE_TEXT_COLOR : DEFAULT_TEXT_COLOR} // 활성화 상태와 기본 상태 텍스트 색상 설정
     >
       {children} {/* 버튼에 표시될 내용 (폴더 이름) */}
-      {/* 클릭 수를 표시할 수도 있습니다. */}
-      <span> (Count: {data.find(item => item.id === itemId)?.count || 0})</span>
     </StyledFolderButton>
   );
 };
