@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StyledLoginForm,
-  LoginFormGroup,
-  Label,
-  Input,
-  PasswordContainer,
-  TogglePasswordButton,
-} from './LoginFormStyle';
+import { StyledLoginForm, LoginFormGroup, Label, Input, PasswordArea, TogglePasswordButton } from './LoginFormStyle';
 import Button from '../../@Shared/Buttons/Button/Button';
 import { Eye, EyeOff } from 'react-feather'; // 아이콘을 위한 라이브러리
 
@@ -38,7 +31,7 @@ const LoginForm: React.FC = () => {
       </LoginFormGroup>
       <LoginFormGroup>
         <Label htmlFor="password">비밀번호</Label>
-        <PasswordContainer>
+        <PasswordArea>
           <Input
             type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="password"
@@ -53,7 +46,7 @@ const LoginForm: React.FC = () => {
           >
             {showPassword ? <EyeOff size={16} /> : <Eye size={16} />} {/* 아이콘 변경 */}
           </TogglePasswordButton>
-        </PasswordContainer>
+        </PasswordArea>
       </LoginFormGroup>
       <Button
         type="submit"

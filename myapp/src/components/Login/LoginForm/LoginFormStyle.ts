@@ -39,7 +39,7 @@ export const Input = styled.input`
 `;
 
 // 비밀번호 영역 (가시성 기능을 넣기 위해)
-export const PasswordContainer = styled.div`
+export const PasswordArea = styled.div`
   position: relative;
 `;
 
