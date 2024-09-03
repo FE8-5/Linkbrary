@@ -1,25 +1,23 @@
-export const API_BASE_URL = process.env.VITE_BASE_API_URL;
-
 export const ENDPOINTS = {
   // AUTH
   signUp: '/auth/sign-up',
   signIn: '/auth/sign-in',
-  signUpWithProvider: '/auth/sign-up/{provider}',
-  signInWithProvider: '/auth/sign-in/{provider}',
+  signUpWithProvider: (provider: string) => `/auth/sign-up/${provider}`,
+  signInWithProvider: (provider: string) => `/auth/sign-in/${provider}`,
 
   // FOLDER
   getAllFolders: '/folders',
   addFolder: '/folders',
-  getFolder: '/folders/{folderId}',
-  deleteFolder: '/folders/{folderId}',
-  updateFolder: '/folders/{folderId}',
+  getFolder: (folderId: number) => `/folders/${folderId}`,
+  deleteFolder: (folderId: number) => `/folders/${folderId}`,
+  updateFolder: (folderId: number) => `/folders/${folderId}`,
 
   // LINK
-  getLinksByFolder: '/folders/{folderId}/links',
-  getAllLinks: '/links?page={page}&pageSize={pageSize}',
+  getLinksByFolder: (folderId: number) => `/folders/${folderId}/links`,
+  getAllLinks: `/links`,
   addLink: '/links',
-  deleteLink: '/links/{linkId}',
-  setFavoriteLink: '/links/{linkId}',
+  deleteLink: (linkId: number) => `/links/${linkId}`,
+  setFavoriteLink: (linkId: number) => `/links/${linkId}`,
   getFavorites: '/favorites',
 
   // OAUTH
