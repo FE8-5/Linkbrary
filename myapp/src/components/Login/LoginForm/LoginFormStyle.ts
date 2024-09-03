@@ -37,3 +37,19 @@ export const Input = styled.input`
     color: #373740; // 플레이스홀더 텍스트 색상
   }
 `;
+
+// 비밀번호 영역 (가시성 기능을 넣기 위해)
+export const PasswordContainer = styled.div`
+  position: relative;
+`;
+
+// 비밀번호 표시 토글 버튼
+export const TogglePasswordButton = styled.button`
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
