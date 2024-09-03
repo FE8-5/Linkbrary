@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyledFolderButton } from './FolderButtonStyle';
-import { ACTIVE_BACKGROUND_COLOR, DEFAULT_BACKGROUND_COLOR } from '../../../constatnts/FolderButtonColor';
-import { ACTIVE_TEXT_COLOR, DEFAULT_TEXT_COLOR } from '../../../constatnts/FolderButtonColor';
+import { ACTIVE_BACKGROUND_COLOR, DEFAULT_BACKGROUND_COLOR } from '../../../../constatnts/FolderButtonColor';
+import { ACTIVE_TEXT_COLOR, DEFAULT_TEXT_COLOR } from '../../../../constatnts/FolderButtonColor';
 
 // FolderButton에서 사용할 데이터 타입을 정의
 interface FolderButtonData {
