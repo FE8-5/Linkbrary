@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledNavigationButtons } from './NavigationButtonsStyle';
-import LogoButton from '../@Shared/Buttons/LogoButton/LogoButton';
+import LogoButton from '../../@Shared/Buttons/LogoButton/LogoButton';
 
 const NavigationButtons: React.FC = () => {
   return (
