@@ -5,7 +5,7 @@ export const StyledSocialLogin = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--cyanBlue);
+  background-color: var(--gray20);
   color: #373740; // 피그마 기준으로 설정했지만, 검정색이 더 나아보이긴합니다.
   border: 0.1rem solid var(--gray30);
   border-radius: 0.8rem;

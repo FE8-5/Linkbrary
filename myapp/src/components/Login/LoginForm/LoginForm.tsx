@@ -1,33 +1,64 @@
 import React, { useState } from 'react';
-import { StyledLoginForm, LoginFormGroup, Label, Input, PasswordArea, TogglePasswordButton } from './LoginFormStyle';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import {
+  StyledLoginForm,
+  LoginFormGroup,
+  Label,
+  Input,
+  ErrorText,
+  PasswordArea,
+  TogglePasswordButton,
+} from './LoginFormStyle';
 import Button from '../../@Shared/Buttons/Button/Button';
 import { Eye, EyeOff } from 'react-feather'; // 아이콘을 위한 라이브러리
 
+interface LoginFormInput {
+  email: string;
+  password: string;
+}
+
 // 로그인 폼 컴포넌트
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false); // 비밀번호 가시성 상태
+  // react-hook-form 훅을 사용하여 폼 상태 관리
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInput>({
+    mode: 'onBlur', // 입력 필드에서 포커스가 벗어날 때 유효성 검사 수행
+  });
 
   // 폼 제출 핸들러
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<LoginFormInput> = data => {
     // 로그인 처리 로직 (임시)
-    console.log('Logging in with', email, password);
+    console.log('Logging in with', data);
+    /**
+     * @TODO
+     * 이메일과 비밀번호를 통한 로그인을 시도합니다.
+     * 로그인이 성공하면 "/"페이지로 이동합니다.
+     */
   };
 
+  // 비밀번호 가시성 상태 관리
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
-    <StyledLoginForm onSubmit={handleSubmit}>
+    <StyledLoginForm onSubmit={handleSubmit(onSubmit)}>
       <LoginFormGroup>
         <Label htmlFor="email">이메일</Label>
         <Input
           type="email"
           id="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          {...register('email', {
+            required: '이메일은 필수 항목입니다.',
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: '이메일 형식으로 작성해 주세요.',
+            },
+          })}
           placeholder="codeit@codeit.com"
-          required
         />
+        {errors.email && <ErrorText>{errors.email.message}</ErrorText>}
       </LoginFormGroup>
       <LoginFormGroup>
         <Label htmlFor="password">비밀번호</Label>
@@ -35,10 +66,14 @@ const LoginForm: React.FC = () => {
           <Input
             type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            {...register('password', {
+              required: '비밀번호는 필수 항목입니다.',
+              minLength: {
+                value: 8,
+                message: '8자 이상 작성해 주세요.',
+              },
+            })}
             placeholder="비밀번호를 입력하세요"
-            required
           />
           <TogglePasswordButton
             type="button"
@@ -47,6 +82,7 @@ const LoginForm: React.FC = () => {
             {showPassword ? <Eye size={16} /> : <EyeOff size={16} />} {/* 아이콘 변경 */}
           </TogglePasswordButton>
         </PasswordArea>
+        {errors.password && <ErrorText>{errors.password.message}</ErrorText>}
       </LoginFormGroup>
       <Button
         type="submit"
