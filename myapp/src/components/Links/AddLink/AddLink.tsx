@@ -1,6 +1,6 @@
 import Button from '../../@Shared/Buttons/Button/Button';
 import linkIcon from '../../../assets/Icons/link.png';
-import { AddLinkContainer, AddLinkInput, AddLinkInputContainer, SearchIcon } from './AddLinkStyle';
+import { AddLinkContainer, AddLinkInput, AddLinkInputContainer, LinkIcon } from './AddLinkStyle';
 import { ChangeEvent, useState } from 'react';
 
 const AddLink = () => {
@@ -15,7 +15,7 @@ const AddLink = () => {
   return (
     <AddLinkContainer>
       <AddLinkInputContainer>
-        <SearchIcon src={linkIcon} alt="searchIcon" />
+        <LinkIcon src={linkIcon} alt="linkIcon" />
         <AddLinkInput
           type="text"
           placeholder="링크를 추가해 보세요"

@@ -34,7 +34,7 @@ export const AddLinkInputContainer = styled.div`
   }
 `;
 
-export const SearchIcon = styled.img`
+export const LinkIcon = styled.img`
   width: 2rem;
   height: 2rem;
 `;
