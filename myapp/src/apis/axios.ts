@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_BASE_URL = process.env.VITE_BASE_API_URL;
+export const API_BASE_URL = import.meta.env.VITE_BASE_API_URL;
 
 // Public instance: 토큰 없이 호출
 export const publicInstance = axios.create({
