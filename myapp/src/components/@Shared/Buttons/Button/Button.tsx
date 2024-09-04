@@ -8,7 +8,8 @@ import { StyledButton } from './ButtonStyle';
 
 // Button 컴포넌트의 props 정의
 export interface ButtonProps {
-  onClick?: () => void; // 버튼 클릭 시 호출되는 핸들러 함수
+  onClick?: React.MouseEventHandler<HTMLButtonElement>; // 버튼 클릭 이벤트 핸들러
+  type?: 'button' | 'submit' | 'reset'; // 버튼 타입
   children: React.ReactNode;
   // 버튼의 자식 노드로 버튼에 표시할 내용
   // 일반적으로 텍스트나 아이콘이 포함됩니다.
@@ -39,6 +40,7 @@ export interface ButtonProps {
  * Button 컴포넌트는 다양한 상태와 스타일을 지원하는 버튼을 렌더링합니다.
  *
  * @param onClick - 버튼 클릭 시 호출되는 함수
+ * @param type - 버튼의 타입
  * @param children - 버튼에 표시할 내용
  * @param size - 버튼의 너비와 높이 설정
  * @param padding - 버튼의 패딩 설정
@@ -59,10 +61,10 @@ const Button: React.FC<ButtonProps> = ({
   const [isActive, setIsActive] = useState(active);
 
   // 버튼 클릭 시 호출되는 함수입니다. 클릭 시 버튼의 active 상태를 토글합니다.
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!disabled) {
       setIsActive(!isActive);
-      if (onClick) onClick();
+      if (onClick) onClick(e); // onClick 호출 시 MouseEvent 객체를 전달
     }
   };
 

@@ -28,6 +28,6 @@ export const StyledFolderButton = styled.button<{ backgroundColor: string; color
 
   &:hover {
     background-color: ${props =>
-      props.backgroundColor === 'var(--white)' ? 'var(--cyanBlue)' : 'var(--primary)'}; // 호버 시 배경색
+      props.backgroundColor === 'var(--white)' ? 'var(--gray20)' : 'var(--primary)'}; // 호버 시 배경색
   }
 `;
