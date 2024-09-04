@@ -32,8 +32,6 @@ button {
   textarea{
     resize: none;
   }
-
-
 `;
 
 export default GlobalStyle;
