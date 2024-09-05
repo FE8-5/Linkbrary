@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationButtons from '../NavigationButtons/NavigationButtons';
+import LoginNavigationButtons from '../LoginNavigationButtons/LoginNavigationButtons';
 import LoginForm from '../LoginForm/LoginForm';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { StyledLoginContainer } from './LoginContainerStyle';
@@ -8,7 +8,7 @@ import { StyledLoginContainer } from './LoginContainerStyle';
 const LoginContainer: React.FC = () => {
   return (
     <StyledLoginContainer>
-      <NavigationButtons />
+      <LoginNavigationButtons />
       <LoginForm />
       <SocialLogin />
     </StyledLoginContainer>
