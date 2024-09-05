@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 export const customModalStyles: ReactModal.Styles = {
   overlay: {
-    backgroundColor: `var(--gray40)`,
-    opacity: '50%',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     width: '100%',
     height: '100vh',
     zIndex: '10',
