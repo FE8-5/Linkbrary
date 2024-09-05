@@ -3,41 +3,41 @@ import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const FooterContainer = styled.div`
   max-width: 100%;
-  max-height: 160px;
-  height: 160px;
+  max-height: 16rem;
+  height: 16rem;
   background-color: #111322;
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
   }
 `;
 
 export const FooterBox = styled.div`
-  padding: 32px;
+  padding: 32rem;
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 32px 104px 108px;
+    padding: 3.2rem 10.4rem 10.8rem;
   }
 
   @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
-    padding: 32px 104px 108px;
+    padding: 3.2rem 10.4rem 10.8rem;
   }
 `;
 
 export const FooterLinkBar = styled.div`
   color: #cfcfcf;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 60px;
+  margin-bottom: 6rem;
 `;
 
 export const SinceText = styled.p`
   position: absolute;
-  top: 126px;
+  top: 12.6rem;
   color: #676767;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
     position: static;
@@ -49,9 +49,9 @@ export const SinceText = styled.p`
 
 export const FooterLinks = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 3rem;
   justify-content: left;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
   a {
     text-decoration: none;
@@ -61,6 +61,6 @@ export const FooterLinks = styled.div`
 
 export const MiniLogoBox = styled.div`
   display: flex;
-  gap: 12px;
+  gap: 1.2rem;
   align-items: center;
 `;

@@ -20,16 +20,16 @@ function Footer() {
           </FooterLinks>
           <MiniLogoBox>
             <a href="https://www.codeit.kr" target="_blank">
-              <img src={facebookIc} width={20} height={20} alt="페이스북 링크 아이콘" />
+              <img src={facebookIc} width="2.0rem" height="2.0rem" alt="페이스북_링크_아이콘" />
             </a>
             <a href="https://www.codeit.kr" target="_blank">
-              <img src={twitterIc} width={20} height={20} alt="트위터 링크 아이콘" />
+              <img src={twitterIc} width="2.0rem" height="2.0rem" alt="트위터_링크_아이콘" />
             </a>
             <a href="https://www.codeit.kr" target="_blank">
-              <img src={youtubeIc} width={20} height={20} alt="유튜브 링크 아이콘" />
+              <img src={youtubeIc} width="2.0rem" height="2.0rem" alt="유튜브_링크_아이콘" />
             </a>
             <a href="https://www.codeit.kr" target="_blank">
-              <img src={instagramIc} width={20} height={20} alt="인스타그램 링크 아이콘" />
+              <img src={instagramIc} width="2.0rem" height="2.0rem" alt="인스타그램_링크_아이콘" />
             </a>
           </MiniLogoBox>
         </FooterLinkBar>
