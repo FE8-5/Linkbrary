@@ -32,6 +32,9 @@ button {
   textarea{
     resize: none;
   }
+  .modal-open {
+  overflow: hidden;
+}
 `;
 
 export default GlobalStyle;
