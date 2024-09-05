@@ -3,12 +3,12 @@ import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const FooterContainer = styled.div`
   max-width: 100%;
-  max-height: 160px;
-  height: 160px;
+  max-height: 16rem;
+  height: 16rem;
   background-color: #111322;
-  @media screen and (max-width: 1199px) and (min-width: 768px) {
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
   }
 `;
 
