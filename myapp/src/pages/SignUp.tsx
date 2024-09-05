@@ -1,7 +1,9 @@
+import SignupContainer from '../components/SignUp/SignupContainer/SignupContainer';
+
 function SignUp() {
   return (
     <>
-      <p>회원가입 페이지</p>
+      <SignupContainer />
     </>
   );
 }
