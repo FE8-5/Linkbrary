@@ -3,6 +3,7 @@ import { getAllLinks } from '../../../apis/LinksPageApi/linkApi';
 import ItemCard from '../ItemCard/ItemCard';
 import { ItemCardGrid, NoLink } from './ItemCardContainerStyle';
 import { LinkRes } from '../../../types/linkTypes';
+import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 export interface ItemLinks {
   list: LinkRes[];
 }
@@ -35,10 +36,10 @@ function ItemCardContainer() {
   // 페이지의 width에 맞게 fetchLinks 함수에 인자(Argument)를 넘김
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
-    if (width > 1199) {
+    if (width > BREAKPOINTS_NUMERIC.largeDesktop) {
       fetchLinks(9);
       setPageSize(9);
-    } else if (width >= 768) {
+    } else if (width >= BREAKPOINTS_NUMERIC.tablet) {
       fetchLinks(6);
       setPageSize(6);
     } else {
