@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: var(--white);
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 25px 0 rgba(0, 0, 0, 0.08);
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
     width: 34rem;
     height: 33.4rem;
