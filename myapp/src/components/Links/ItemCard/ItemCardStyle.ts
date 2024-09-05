@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
+import StarSVG from '../../../assets/Icons/star.svg?react';
 
 export const CardContainer = styled.div`
   border-radius: 15px;
@@ -43,7 +44,7 @@ export const CardFavoriteStarBtn = styled.div`
     left: 29.2rem;
   }
 `;
-export const CardFavoriteStarSvg = styled.svg<{ $favorite: boolean }>`
+export const CardFavoriteStarSvg = styled(StarSVG)<{ $favorite: boolean }>`
   width: 3rem;
   height: 3rem;
   path {
