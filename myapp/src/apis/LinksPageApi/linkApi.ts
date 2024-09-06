@@ -1,3 +1,4 @@
+import { ItemLinks } from '../../components/Links/ItemCardContainer/ItemCardContainer';
 import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { LinkRes } from '../../types/linkTypes';
 import { privateInstance, publicInstance } from '../axios';
@@ -19,7 +20,7 @@ export const getLinksByFolder = async (folderId: number, page: number, pageSize:
   }
 };
 
-export const getAllLinks = async (page: number, pageSize: number, search: string): Promise<LinkRes> => {
+export const getAllLinks = async (page: number, pageSize: number, search: string): Promise<ItemLinks> => {
   try {
     const response = await privateInstance({
       method: 'GET',
@@ -71,7 +72,7 @@ export const setFavoriteLink = async (linkId: number, favorite: boolean): Promis
   try {
     const response = await privateInstance({
       method: 'PUT',
-      url: ENDPOINTS.deleteLink(linkId),
+      url: ENDPOINTS.setFavoriteLink(linkId),
       data: {
         favorite,
       },
@@ -88,6 +89,22 @@ export const getFavorites = async (): Promise<LinkRes> => {
     const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getFavorites,
+    });
+    return response.data;
+  } catch (error) {
+    console.error('error: ', error);
+    throw error;
+  }
+};
+
+export const editLink = async (linkId: number, url: string): Promise<LinkRes> => {
+  try {
+    const response = await privateInstance({
+      method: 'PUT',
+      url: ENDPOINTS.putLink(linkId),
+      data: {
+        url,
+      },
     });
     return response.data;
   } catch (error) {

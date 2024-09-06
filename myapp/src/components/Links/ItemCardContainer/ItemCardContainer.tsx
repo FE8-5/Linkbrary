@@ -5,12 +5,17 @@ import { ItemCardGrid, NoLink } from './ItemCardContainerStyle';
 import { LinkRes } from '../../../types/linkTypes';
 import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 export interface ItemLinks {
+  totalCount: number;
   list: LinkRes[];
 }
 
 function ItemCardContainer() {
   const [isLoading, setIsLoading] = useState(true);
-  const [items, setItems] = useState<ItemLinks>({ list: [] });
+  const [isNewItem, setIsNewItem] = useState(false);
+  const [items, setItems] = useState<ItemLinks>({
+    totalCount: 0,
+    list: [],
+  });
   // TODO: 추후 pageSize 이용하여 페이지네이션 구현 필요
   const [pageSize, setPageSize] = useState(9);
 
@@ -21,13 +26,10 @@ function ItemCardContainer() {
       const pageSize = pageItemSize;
       const search = '';
 
-      const links = await getAllLinks(page, pageSize, search);
-      if (Array.isArray(links)) {
-        setItems({ list: links });
-        setIsLoading(false);
-      } else {
-        console.error('response가 배열이 아님');
-      }
+      const links: ItemLinks = await getAllLinks(page, pageSize, search);
+      setItems(links);
+
+      setIsLoading(false);
     } catch (error) {
       console.error('데이터 받아오기 실패:', error);
     }
@@ -51,7 +53,7 @@ function ItemCardContainer() {
   // 첫 렌더링시 데이터 요청
   useEffect(() => {
     handleResize();
-  }, [handleResize]);
+  }, [handleResize, isNewItem]);
 
   // 리사이징 동작 시 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
   useEffect(() => {
@@ -77,7 +79,9 @@ function ItemCardContainer() {
   }
   return (
     <ItemCardGrid>
-      {items ? items.list.map(item => <ItemCard key={item.id} item={item} />) : <div>아이템이 없습니다.</div>}
+      {items.list.map(item => (
+        <ItemCard key={item.id} item={item} setIsNewItem={setIsNewItem} />
+      ))}
     </ItemCardGrid>
   );
 }

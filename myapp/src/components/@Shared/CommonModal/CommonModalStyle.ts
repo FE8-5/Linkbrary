@@ -27,6 +27,7 @@ export const customModalStyles: ReactModal.Styles = {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    overflowX: 'hidden',
   },
 };
 
