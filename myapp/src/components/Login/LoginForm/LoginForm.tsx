@@ -9,13 +9,9 @@ import {
   PasswordArea,
   TogglePasswordButton,
 } from './LoginFormStyle';
+import { LoginFormInput } from '../../../types/loginTypes';
 import Button from '../../@Shared/Buttons/Button/Button';
 import { Eye, EyeOff } from 'react-feather'; // 아이콘을 위한 라이브러리
-
-interface LoginFormInput {
-  email: string;
-  password: string;
-}
 
 // 로그인 폼 컴포넌트
 const LoginForm: React.FC = () => {
