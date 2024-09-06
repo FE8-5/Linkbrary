@@ -12,6 +12,7 @@ export const customModalStyles: ReactModal.Styles = {
   },
   content: {
     width: '36rem',
+    height: '36rem',
     zIndex: '150',
     position: 'absolute',
     top: '50%',
