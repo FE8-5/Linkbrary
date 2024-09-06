@@ -42,7 +42,7 @@ const SignupForm: React.FC = () => {
       alert('가입이 완료되었습니다');
       navigate('/login'); // 회원가입 성공 시 로그인 페이지로 이동
     } catch (error) {
-      console.error('회원가입 실패:', error);
+      console.error('회원가입 실패: ', error);
       alert('회원가입 도중 오류가 발생했습니다');
     }
   };

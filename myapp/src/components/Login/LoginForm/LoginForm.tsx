@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import {
   StyledLoginForm,
   LoginFormGroup,
@@ -10,8 +11,10 @@ import {
   TogglePasswordButton,
 } from './LoginFormStyle';
 import { LoginFormInput } from '../../../types/loginTypes';
+import { AuthRes } from '../../../types/authTypes';
 import Button from '../../@Shared/Buttons/Button/Button';
 import { Eye, EyeOff } from 'react-feather'; // 아이콘을 위한 라이브러리
+import { signIn } from '../../../apis/AuthApi/authApi';
 
 // 로그인 폼 컴포넌트
 const LoginForm: React.FC = () => {
@@ -24,15 +27,20 @@ const LoginForm: React.FC = () => {
     mode: 'onBlur', // 입력 필드에서 포커스가 벗어날 때 유효성 검사 수행
   });
 
+  const navigate = useNavigate();
+
   // 폼 제출 핸들러
-  const onSubmit: SubmitHandler<LoginFormInput> = data => {
-    // 로그인 처리 로직 (임시)
-    console.log('Logging in with', data);
-    /**
-     * @TODO
-     * 이메일과 비밀번호를 통한 로그인을 시도합니다.
-     * 로그인이 성공하면 "/"페이지로 이동합니다.
-     */
+  const onSubmit: SubmitHandler<LoginFormInput> = async data => {
+    try {
+      const response: AuthRes = await signIn(data.email, data.password);
+      // 로그인 성공 시 토큰 저장 및 리다이렉트 처리
+      localStorage.setItem('accessToken', response.accessToken);
+      navigate('/');
+    } catch (error) {
+      // 로그인 실패 시 에러 처리
+      console.error('로그인 실패: ', error);
+      alert('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
+    }
   };
 
   // 비밀번호 가시성 상태 관리
