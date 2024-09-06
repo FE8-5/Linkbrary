@@ -12,9 +12,12 @@ import {
 } from './SignupFormStyle';
 import Button from '../../@Shared/Buttons/Button/Button';
 import { Eye, EyeOff } from 'react-feather'; // 아이콘을 위한 라이브러리
+import { useNavigate } from 'react-router-dom';
+import { signUp } from '../../../apis/AuthApi/authApi';
 
 // 회원가입 폼 컴포넌트
 const SignupForm: React.FC = () => {
+  const navigate = useNavigate();
   // useForm 훅을 사용하여 폼 상태와 유효성 검사 설정
   const {
     register,
@@ -23,29 +26,32 @@ const SignupForm: React.FC = () => {
     watch,
   } = useForm<SignupFormInput>();
 
-  // 폼 제출 시 호출되는 함수
-  const onSubmit: SubmitHandler<SignupFormInput> = data => {
-    // 회원가입 처리 로직 (임시)
-    console.log('Form submitted', data);
-    /**
-     * @TODO
-     * 이메일, 이름, 비밀번호를 통한 회원가입을 시도합니다.
-     * 회원가입이 성공하면 alert 창을 보여주고 "/login"페이지로 이동합니다.
-     */
-  };
-
-  /**
-   * @TODO
-   * 1. 이메일 중복 확인 기능을 추가로 구현합니다.
-   * 2. 이용약관 동의 대신에 캡차 기능을 추가로 구현합니다.
-   */
-
   // 비밀번호 가시성 상태 관리
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
 
   // 비밀번호 필드의 값을 실시간으로 관찰
   const password = watch('password');
+
+  // 폼 제출 시 호출되는 함수
+  const onSubmit: SubmitHandler<SignupFormInput> = async ({ email, password, name }) => {
+    try {
+      // authApi에서 정의한 signUp 함수 사용
+      await signUp(email, password, name);
+
+      alert('가입이 완료되었습니다');
+      navigate('/login'); // 회원가입 성공 시 로그인 페이지로 이동
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+      alert('회원가입 도중 오류가 발생했습니다');
+    }
+  };
+
+  /**
+   * @TODO
+   * 1. 이메일 중복 확인 기능을 추가로 구현합니다. (백엔드에 구현)
+   * 2. 이용약관 동의 대신에 캡차 기능을 추가로 구현합니다. (코드잇에 문의)
+   */
 
   return (
     <StyledSignupForm onSubmit={handleSubmit(onSubmit)}>
@@ -109,7 +115,7 @@ const SignupForm: React.FC = () => {
         <Label htmlFor="confirmPassword">비밀번호 확인</Label>
         <PasswordArea>
           <Input
-            type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
+            type={showConfirmPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="confirmPassword"
             {...register('confirmPassword', {
               validate: value => value === password || '비밀번호가 일치하지 않습니다.',
