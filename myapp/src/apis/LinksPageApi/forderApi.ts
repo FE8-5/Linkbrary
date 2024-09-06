@@ -2,7 +2,7 @@ import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { GetAllFoldersRes, OtherFolderRes } from '../../types/folderTypes';
 import { privateInstance, publicInstance } from '../axios';
 
-export const getAllFolders = async (): Promise<GetAllFoldersRes> => {
+export const getAllFolders = async (): Promise<GetAllFoldersRes[]> => {
   try {
     const response = await privateInstance({
       method: 'GET',
