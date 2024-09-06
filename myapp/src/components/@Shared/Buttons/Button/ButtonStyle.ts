@@ -27,9 +27,9 @@ export const StyledButton = styled.button<ButtonProps>`
   &:hover {
     background: ${props =>
       props.disabled
-        ? undefined // 비활성화 상태일 때 호버 효과 없음 ('undefined'는 배경 색상을 설정하지 않는다는 의미)
-        : props.active
-          ? `linear-gradient(to right, var(--active-start), var(--active-end))` // active 상태일 때 호버 효과
-          : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태일 때 호버 효과
+        ? 'var(--lightgray)' // 비활성화 상태에서 호버 시 배경색 유지
+        : props.active // 버튼이 클릭되고 있는 동안의 배경색을 정의
+          ? `linear-gradient(to right, var(--active-start), var(--active-end))` // 활성화 상태에서 호버 시 배경색 유지
+          : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태에서 호버 시 배경색 유지
   }
 `;

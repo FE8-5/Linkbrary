@@ -54,23 +54,26 @@ const Button: React.FC<ButtonProps> = ({
   size = {},
   padding = {},
   fontSize = '1.6rem',
-  active = false,
   disabled = false,
 }) => {
-  // 현재 버튼의 active 상태를 관리하는 상태 훅입니다.
-  const [isActive, setIsActive] = useState(active);
+  // 버튼의 클릭 여부를 상태 관리로 전달
+  const [isActive, setIsActive] = useState(false);
 
-  // 버튼 클릭 시 호출되는 함수입니다. 클릭 시 버튼의 active 상태를 토글합니다.
+  // 버튼 클릭 시 호출되는 함수입니다.
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!disabled) {
-      setIsActive(!isActive);
-      if (onClick) onClick(e); // onClick 호출 시 MouseEvent 객체를 전달
-    }
+    if (!disabled && onClick) onClick(e);
   };
+
+  // 마우스 눌렀을 때 상태를 true로 설정
+  const handleMouseDown = () => setIsActive(true);
+  // 마우스 버튼을 떼었을 때 상태를 false로 설정
+  const handleMouseUp = () => setIsActive(false);
 
   return (
     <StyledButton
       onClick={handleClick} // 클릭 시 상태 토글 및 클릭 핸들러 호출
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
       size={size}
       padding={padding}
       fontSize={fontSize}
