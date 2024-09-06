@@ -115,7 +115,7 @@ const SignupForm: React.FC = () => {
         <Label htmlFor="confirmPassword">비밀번호 확인</Label>
         <PasswordArea>
           <Input
-            type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
+            type={showConfirmPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="confirmPassword"
             {...register('confirmPassword', {
               validate: value => value === password || '비밀번호가 일치하지 않습니다.',
