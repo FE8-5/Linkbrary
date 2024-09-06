@@ -19,7 +19,7 @@ interface LoginFormInput {
 
 // 로그인 폼 컴포넌트
 const LoginForm: React.FC = () => {
-  // react-hook-form 훅을 사용하여 폼 상태 관리
+  // useForm 훅을 사용하여 폼 상태 관리
   const {
     register,
     handleSubmit,

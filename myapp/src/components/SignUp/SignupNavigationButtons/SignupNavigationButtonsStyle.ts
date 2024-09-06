@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledNavigationButtons = styled.div`
+export const StyledSignupNavigationButtons = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,13 +11,13 @@ export const StyledNavigationButtons = styled.div`
   margin: 0 auto 3rem;
 `;
 
-export const SignUpButtonArea = styled.div`
+export const LoginButtonArea = styled.div`
   display: flex;
   gap: 0.8rem;
   font-size: 1.6rem;
 `;
 
-export const SignUpButton = styled.div`
+export const LoginButton = styled.div`
   color: var(--primary);
   font-weight: 600;
 `;
