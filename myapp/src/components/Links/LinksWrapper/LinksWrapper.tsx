@@ -17,21 +17,30 @@ const LinksWrapper = () => {
   const initSearch = searchParams.get('search');
 
   const fetchFolderList = async () => {
-    const response = await getAllFolders();
-    console.log(response);
-
-    setFolderList(response);
+    try {
+      const response = await getAllFolders();
+      setFolderList(response);
+    } catch (error) {
+      console.error('폴더를 가져오지 못했습니다.');
+    }
   };
 
   const fetchAllLinks = async (page: number, pagesize: number, search: string | null) => {
-    const response = await getAllLinks(page, pagesize, search);
-    setLinkListInfo(response);
+    try {
+      const response = await getAllLinks(page, pagesize, search);
+      setLinkListInfo(response);
+    } catch (error) {
+      console.error('링크를 가져오지 못했습니다.');
+    }
   };
 
   const fetchLinksByFolder = async (folderId: number, page: number, pageSize: number) => {
-    const response = await getLinksByFolder(folderId, page, pageSize);
-
-    setLinkListInfo(response);
+    try {
+      const response = await getLinksByFolder(folderId, page, pageSize);
+      setLinkListInfo(response);
+    } catch (error) {
+      console.error('링크를 가져오지 못했습니다.');
+    }
   };
   const handleFolderClick = (folderId: number) => {
     setSelectedFolderId(folderId);
