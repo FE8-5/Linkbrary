@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonProps } from './Button';
+import { ButtonProps } from '../../../../types/buttonTypes';
 
 // 버튼 스타일 정의 (prop을 전달해주지 않을 경우 기본값으로 적용)
 export const StyledButton = styled.button<ButtonProps>`
