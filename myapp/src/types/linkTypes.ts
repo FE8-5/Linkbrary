@@ -7,3 +7,7 @@ export interface LinkRes {
   favorite: boolean;
   imageSource: string;
 }
+export interface ItemLinks {
+  totalCount: number;
+  list: LinkRes[];
+}
