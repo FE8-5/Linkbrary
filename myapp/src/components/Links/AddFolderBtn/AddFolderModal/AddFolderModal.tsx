@@ -1,19 +1,22 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react';
 import Button from '../../../@Shared/Buttons/Button/Button';
 import CommonModal from '../../../@Shared/CommonModal/CommonModal';
 import { AddFolderName, Title } from './AddFolderModalStyle';
 import { addFolder } from '../../../../apis/LinksPageApi/forderApi';
+import { GetAllFoldersRes, OtherFolderRes } from '../../../../types/folderTypes';
 interface ModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
+  setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
 }
 
-const AddFolderModal = ({ isModalOpen, closeModal }: ModalProps) => {
+const AddFolderModal = ({ isModalOpen, closeModal, setFolderList }: ModalProps) => {
   const [value, setValue] = useState<string>('');
 
   const fetchAddFolder = async (name: string) => {
     try {
-      await addFolder(name);
+      const response: OtherFolderRes = await addFolder(name);
+      setFolderList(prevItems => [response, ...(prevItems || [])]);
     } catch (error) {
       console.error('오류가 발생했습니다!!');
     }
