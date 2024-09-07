@@ -8,7 +8,10 @@ export const AddFolderButton = styled.button`
   background-color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
+  width: 11rem;
+  padding: 0 1rem;
 `;
 
 export const PlusIcon = styled.img`
