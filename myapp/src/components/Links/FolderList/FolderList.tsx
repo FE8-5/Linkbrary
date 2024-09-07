@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GetAllFoldersRes } from '../../../types/folderTypes';
-import { FolderButton, FolderListContainer } from './FolderListStyle';
+import { EmptyFolderMessage, FolderButton, FolderListContainer } from './FolderListStyle';
 
 interface FolderListProps {
   folderList: GetAllFoldersRes[] | undefined;
@@ -14,7 +14,7 @@ const FolderList = ({ folderList, onClick, selectedFolderId }: FolderListProps) 
   };
   return (
     <FolderListContainer>
-      {folderList && (
+      {folderList && folderList.length > 0 ? (
         <>
           <FolderButton isSelected={selectedFolderId === 0} onClick={() => handleClick(0)}>
             전체
@@ -27,6 +27,8 @@ const FolderList = ({ folderList, onClick, selectedFolderId }: FolderListProps) 
             );
           })}
         </>
+      ) : (
+        <EmptyFolderMessage>폴더를 추가해주세요!!</EmptyFolderMessage>
       )}
     </FolderListContainer>
   );

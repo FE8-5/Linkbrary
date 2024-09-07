@@ -19,3 +19,9 @@ export const FolderButton = styled.button<{ isSelected: boolean }>`
   background-color: ${({ isSelected }) => (isSelected ? 'var(--primary)' : 'transparent')};
   color: ${({ isSelected }) => (isSelected ? 'var(--white)' : 'var(--black)')};
 `;
+
+export const EmptyFolderMessage = styled.p`
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--gray50);
+`;
