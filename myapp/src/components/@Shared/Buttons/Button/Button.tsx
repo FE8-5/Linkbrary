@@ -34,6 +34,8 @@ export interface ButtonProps {
   disabled?: boolean;
   // 버튼이 비활성화된 상태인지 여부를 나타냅니다.
   // 버튼이 비활성화된 상태에서는 클릭이 불가능하며 스타일이 변경됩니다.
+  backgroundColor?: string; // 버튼 배경색 사용자 지정
+  hoverBackgroundColor?: string; // 버튼 호버 시 배경색 지정
 }
 
 /**
@@ -47,6 +49,8 @@ export interface ButtonProps {
  * @param fontSize - 버튼 텍스트의 폰트 크기 설정
  * @param active - 버튼의 활성화 상태
  * @param disabled - 버튼의 비활성화 상태
+ * @param backgroundColor - 사용자 지정 배경색
+ * @param hoverBackgroundColor - 호버 시 사용자 지정 배경색
  */
 const Button: React.FC<ButtonProps> = ({
   onClick,
@@ -55,6 +59,8 @@ const Button: React.FC<ButtonProps> = ({
   padding = {},
   fontSize = '1.6rem',
   disabled = false,
+  backgroundColor,
+  hoverBackgroundColor,
 }) => {
   // 버튼의 클릭 여부를 상태 관리로 전달
   const [isActive, setIsActive] = useState(false);
@@ -78,7 +84,9 @@ const Button: React.FC<ButtonProps> = ({
       padding={padding}
       fontSize={fontSize}
       active={isActive} // 현재 active 상태를 전달
-      disabled={disabled}>
+      disabled={disabled}
+      backgroundColor={backgroundColor}
+      hoverBackgroundColor={hoverBackgroundColor}>
       {children}
     </StyledButton>
   );
