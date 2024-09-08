@@ -21,9 +21,7 @@ const LinksWrapper = () => {
   const [pageCount, setPageCount] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const initSearch = searchParams.get('search');
-  console.log(folderList);
-  console.log(linkListInfo.list);
-  console.log(selectedFolderId);
+
   // 데이터를 받아오는 함수
   async function fetchAllLinks(page: number, pagesize: number, search: string | null) {
     try {

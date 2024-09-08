@@ -29,7 +29,7 @@ function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPa
   const onRightArrowClick = (currentPage: number) => {
     setCurrentPage(currentPage + 1);
   };
-  console.log('토탈페이지', totalPages, '페이지카운트', pageCount);
+
   return (
     <PaginationContainer>
       <li>
