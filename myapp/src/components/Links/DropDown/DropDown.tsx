@@ -3,17 +3,17 @@ import { DropDownBar, DropDownContainer, DropDownSelect } from './DropDownStyle'
 import kebabIc from '../../../assets/Icons/kebab.png';
 
 interface ItemCardProps {
-  setDeleteIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDeleteModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function DropDownKebabIcon({ setDeleteIsModalOpen, setIsEditModalOpen }: ItemCardProps) {
+function DropDownKebabIcon({ setIsDeleteModalOpen, setIsEditModalOpen }: ItemCardProps) {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const openDeleteModal = () => {
-    setDeleteIsModalOpen(true);
+    setIsDeleteModalOpen(true);
   };
 
   const openEditModal = () => {

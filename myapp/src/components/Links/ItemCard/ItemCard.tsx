@@ -28,8 +28,14 @@ interface ItemCardProps {
 function ItemCard({ item, setIsNewItem }: ItemCardProps) {
   const [isLoadingFavorite, setIsLoadingFavorite] = useState(false);
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
-  const [isDeleteModalOpen, setDeleteIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsDeleteModalOpen(false);
+    setIsEditModalOpen(false);
+  };
 
   const favoriteClick = () => {
     if (isLoadingFavorite) return;
@@ -57,7 +63,7 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
         console.error('링크 삭제 실패', e);
       })
       .finally(() => {
-        setDeleteIsModalOpen(false);
+        setIsDeleteModalOpen(false);
         setIsLoadingDelete(false);
       });
   };
@@ -81,27 +87,13 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
       <InfoContainer>
         <TimeMenuBar>
           {dateString ? <TimeAgo>{getTimeDiff(dateString)}</TimeAgo> : <></>}
-          <DropDownKebabIcon setDeleteIsModalOpen={setDeleteIsModalOpen} setIsEditModalOpen={setIsEditModalOpen} />
+          <DropDownKebabIcon setIsDeleteModalOpen={setIsDeleteModalOpen} setIsEditModalOpen={setIsEditModalOpen} />
         </TimeMenuBar>
         <InfoDescription>{item.description}</InfoDescription>
         <InfoCreatedAt>{formattedDate}</InfoCreatedAt>
       </InfoContainer>
-      {isDeleteModalOpen && (
-        <DeleteModal
-          item={item}
-          isModalOpen={isDeleteModalOpen}
-          closeModal={() => setDeleteIsModalOpen(false)}
-          onDelete={handleDelete}
-        />
-      )}
-      {isEditModalOpen && (
-        <EditModal
-          item={item}
-          isModalOpen={isEditModalOpen}
-          closeModal={() => setIsEditModalOpen(false)}
-          setIsNewItem={setIsNewItem}
-        />
-      )}
+      <DeleteModal item={item} onDelete={handleDelete} isModalOpen={isDeleteModalOpen} closeModal={closeModal} />
+      <EditModal item={item} setIsNewItem={setIsNewItem} isModalOpen={isEditModalOpen} closeModal={closeModal} />
     </CardContainer>
   );
 }
