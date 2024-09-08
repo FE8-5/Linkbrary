@@ -1,4 +1,3 @@
-import { ItemLinks } from '../../components/Links/ItemCardContainer/ItemCardContainer';
 import { ENDPOINTS } from '../../constatnts/apiAddress';
 import { ItemLinks, LinkRes } from '../../types/linkTypes';
 import { privateInstance, publicInstance } from '../axios';
