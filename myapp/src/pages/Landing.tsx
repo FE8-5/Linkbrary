@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './home.module.css';
+import styles from './landing.module.css';
+import Footer from '../components/@Shared/Footer/Footer';
 
 const Page: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ const Page: React.FC = () => {
           <h1 className={styles.title}>
             <span className={styles['title-gradient']}>세상의 모든 정보</span>를
             <br />
-            쉽게 저장하고
+            쉽게 저장하고<span> </span>
             <br className={styles['hidden-br-pc']} />
             관리해보세요
           </h1>
@@ -17,13 +18,13 @@ const Page: React.FC = () => {
             링크 추가하기
           </a>
         </div>
-        <img className={styles['home-hero-img']} alt="home-hero-img" src="/assets/images/home-hero-img.png" />
+        <img className={styles['home-hero-img']} alt="home-hero-img" src="src/assets/images/home-hero-img.png" />
       </main>
 
       <section className={styles.section}>
         <article className={`${styles.article} ${styles.mobile}`}>
           <h2 className={`${styles['article-heading']} ${styles.left} ${styles.mobile}`}>
-            <span className={styles['save-link-gradient']}>원하는 링크</span>를
+            <span className={styles['save-link-gradient']}>원하는 링크</span>를<span> </span>
             <br className={styles['hidden-br-mobile']} />
             저장하세요
           </h2>
@@ -35,14 +36,14 @@ const Page: React.FC = () => {
           </p>
           <img
             alt="save-link-img"
-            src="/assets/images/save-link-img.png"
+            src="src/assets/images/save-link-img.png"
             className={`${styles['content-imgs']} ${styles.right} ${styles.mobile}`}
           />
         </article>
         <article className={`${styles.article} ${styles.mobile}`}>
           <img
             alt="manage-link-img"
-            src="/assets/images/manage-link-img.png"
+            src="src/assets/images/manage-link-img.png"
             className={`${styles['content-imgs']} ${styles.left} ${styles.mobile}`}
           />
 
@@ -53,7 +54,7 @@ const Page: React.FC = () => {
           <p className={`${styles.right} ${styles.mobile}`}>
             나만의 폴더를 무제함으로 만들고
             <br className={styles['hidden-br-mobile']} />
-            다양하게 활용할 수 있어요.
+            다양하게 활용할 수 있습니다.
           </p>
         </article>
         <article className={`${styles.article} ${styles.mobile}`}>
@@ -62,7 +63,7 @@ const Page: React.FC = () => {
             <span className={styles['share-link-gradient']}>공유</span>해보세요
           </h2>
           <p className={`${styles.left} ${styles.mobile}`}>
-            여러 링크를 폴더에 담고 공유할 수 있어요.
+            여러 링크를 폴더에 담고 공유할 수 있습니다.
             <br className={styles['hidden-br-mobile']} />
             가족, 친구, 동료들에게 쉽고 빠르게 링크를
             <br className={styles['hidden-br-mobile']} />
@@ -71,14 +72,14 @@ const Page: React.FC = () => {
 
           <img
             alt="share-link-img"
-            src="/assets/images/share-link-img.png"
+            src="src/assets/images/share-link-img.png"
             className={`${styles['content-imgs']} ${styles.right} ${styles.mobile}`}
           />
         </article>
         <article className={`${styles.article} ${styles.mobile}`}>
           <img
             alt="search-link-img"
-            src="/assets/images/search-link-img.png"
+            src="src/assets/images/search-link-img.png"
             className={`${styles['content-imgs']} ${styles.left} ${styles.mobile}`}
           />
 
@@ -89,6 +90,7 @@ const Page: React.FC = () => {
           <p className={`${styles.right} ${styles.mobile}`}>중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
         </article>
       </section>
+      <Footer></Footer>
     </div>
   );
 };
