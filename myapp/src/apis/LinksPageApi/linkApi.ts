@@ -1,8 +1,8 @@
 import { ENDPOINTS } from '../../constatnts/apiAddress';
-import { LinkRes } from '../../types/linkTypes';
+import { ItemLinks, LinkRes } from '../../types/linkTypes';
 import { privateInstance, publicInstance } from '../axios';
 
-export const getLinksByFolder = async (folderId: number, page: number, pageSize: number): Promise<LinkRes> => {
+export const getLinksByFolder = async (folderId: number, page: number, pageSize: number): Promise<ItemLinks> => {
   try {
     const response = await publicInstance({
       method: 'GET',
@@ -19,7 +19,7 @@ export const getLinksByFolder = async (folderId: number, page: number, pageSize:
   }
 };
 
-export const getAllLinks = async (page: number, pageSize: number, search: string): Promise<LinkRes> => {
+export const getAllLinks = async (page: number, pageSize: number, search: string | null): Promise<ItemLinks> => {
   try {
     const response = await privateInstance({
       method: 'GET',
