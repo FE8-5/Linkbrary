@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import FolderListWithAdd from '../FolderListWithAdd/FolderListWithAdd';
+import FolderListWithAdd from '../FolderListWithAdd /FolderListWithAdd';
 import ItemCardContainer from '../ItemCardContainer/ItemCardContainer';
 import SearchLink from '../SearchLink/SearchLink';
 import { Keyword, SearchResultsContent, Wrapper } from './LinksWrapperStyle';
