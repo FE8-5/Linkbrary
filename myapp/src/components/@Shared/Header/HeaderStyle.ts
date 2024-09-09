@@ -17,3 +17,7 @@ export const HeaderList = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const LogoImage = styled.img`
+  display: flex;
+`;

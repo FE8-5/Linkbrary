@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './landing.module.css';
 import Footer from '../components/@Shared/Footer/Footer';
+import Header from '../components/@Shared/Header/Header';
 
-const Page: React.FC = () => {
+const Page = () => {
   return (
     <div className={styles.container}>
+      <Header></Header>
       <main className={styles.main}>
         <div>
           <h1 className={styles.title}>
