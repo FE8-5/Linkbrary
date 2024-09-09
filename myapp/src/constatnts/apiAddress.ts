@@ -17,8 +17,9 @@ export const ENDPOINTS = {
   getAllLinks: `/links`,
   addLink: '/links',
   deleteLink: (linkId: number) => `/links/${linkId}`,
-  setFavoriteLink: (linkId: number) => `/links/${linkId}`,
+  setFavoriteLink: (linkId: number) => `/links/${linkId}/favorite`,
   getFavorites: '/favorites',
+  putLink: (linkId: number) => `/links/${linkId}`,
 
   // OAUTH
   setOauthApps: '/oauthApps',

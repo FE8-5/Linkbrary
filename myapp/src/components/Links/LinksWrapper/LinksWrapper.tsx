@@ -3,34 +3,86 @@ import FolderListWithAdd from '../FolderListWithAdd/FolderListWithAdd';
 import ItemCardContainer from '../ItemCardContainer/ItemCardContainer';
 import SearchLink from '../SearchLink/SearchLink';
 import { Keyword, SearchResultsContent, Wrapper } from './LinksWrapperStyle';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getAllFolders } from '../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../types/folderTypes';
 import { getAllLinks, getLinksByFolder } from '../../../apis/LinksPageApi/linkApi';
 import { ItemLinks } from '../../../types/linkTypes';
+import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 
 const LinksWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [folderList, setFolderList] = useState<GetAllFoldersRes[]>();
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
+  const [isLoading, setIsLoading] = useState(true); // 카드 컨테이너 로딩 상태관리
+  const [isNewItem, setIsNewItem] = useState(false);
+  const [pageSize, setPageSize] = useState(9);
+  const [pageCount, setPageCount] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
   const initSearch = searchParams.get('search');
 
+  // 데이터를 받아오는 함수
+  async function fetchAllLinks(page: number, pagesize: number, search: string | null) {
+    try {
+      const links: ItemLinks = await getAllLinks(page, pagesize, search);
+      setLinkListInfo(links);
+      setIsLoading(false);
+    } catch (error) {
+      console.error('데이터 받아오기 실패:', error);
+    }
+  }
+
+  // 페이지의 width에 맞게 fetchLinks 함수에 인자(Argument)를 넘김
+  const handleResize = useCallback(() => {
+    const width = window.innerWidth;
+    if (selectedFolderId) {
+      setSelectedFolderId(selectedFolderId);
+      fetchLinksByFolder(selectedFolderId, currentPage, pageSize);
+    } else if (width > BREAKPOINTS_NUMERIC.largeDesktop) {
+      fetchAllLinks(currentPage, 9, initSearch);
+      setPageSize(9);
+      setPageCount(5);
+    } else if (width >= BREAKPOINTS_NUMERIC.tablet) {
+      fetchAllLinks(currentPage, 6, initSearch);
+      setPageSize(6);
+      setPageCount(3);
+    } else {
+      fetchAllLinks(currentPage, 9, initSearch);
+      setPageSize(9);
+      setPageCount(3);
+    }
+  }, [initSearch, currentPage, pageSize, selectedFolderId]);
+
+  // 첫 렌더링, 검색, 링크 수정 시 새 데이터 요청
+  useEffect(() => {
+    setSelectedFolderId(null);
+    handleResize();
+  }, [handleResize, initSearch, isNewItem]);
+
+  // 리사이징 동작 시 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
+  useEffect(() => {
+    let timer: number | undefined = undefined;
+    const getResize = () => {
+      const delay = 300;
+      clearTimeout(timer);
+      timer = window.setTimeout(() => {
+        handleResize();
+      }, delay);
+    };
+    window.addEventListener('resize', getResize);
+    return () => {
+      window.removeEventListener('resize', getResize);
+    };
+  }, [handleResize]);
+
+  // 아래로는 폴더 관련 함수
   const fetchFolderList = async () => {
     try {
       const response = await getAllFolders();
       setFolderList(response);
     } catch (error) {
-      console.error('폴더를 가져오지 못했습니다.');
-    }
-  };
-
-  const fetchAllLinks = async (page: number, pagesize: number, search: string | null) => {
-    try {
-      const response = await getAllLinks(page, pagesize, search);
-      setLinkListInfo(response);
-    } catch (error) {
-      console.error('링크를 가져오지 못했습니다.');
+      console.error('폴더를 가져오지 못했습니다.', error);
     }
   };
 
@@ -39,15 +91,17 @@ const LinksWrapper = () => {
       const response = await getLinksByFolder(folderId, page, pageSize);
       setLinkListInfo(response);
     } catch (error) {
-      console.error('링크를 가져오지 못했습니다.');
+      console.error('링크를 가져오지 못했습니다.', error);
     }
   };
   const handleFolderClick = (folderId: number) => {
     setSelectedFolderId(folderId);
+    setCurrentPage(1);
     if (folderId === 0) {
-      fetchAllLinks(1, 10, '');
+      handleResize();
+      setSelectedFolderId(null);
     } else {
-      fetchLinksByFolder(folderId, 1, 10);
+      fetchLinksByFolder(folderId, 1, pageSize);
     }
   };
 
@@ -55,12 +109,6 @@ const LinksWrapper = () => {
   useEffect(() => {
     fetchFolderList();
   }, []);
-
-  //검색하면 링크 새로호출
-  useEffect(() => {
-    fetchAllLinks(1, 10, initSearch);
-    setSelectedFolderId(null);
-  }, [initSearch]);
 
   return (
     <Wrapper>
@@ -76,7 +124,15 @@ const LinksWrapper = () => {
         onClick={handleFolderClick}
         selectedFolderId={selectedFolderId}
       />
-      <ItemCardContainer linkListInfo={linkListInfo} />
+      <ItemCardContainer
+        linkListInfo={linkListInfo}
+        isLoading={isLoading}
+        setIsNewItem={setIsNewItem}
+        pageSize={pageSize}
+        pageCount={pageCount}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </Wrapper>
   );
 };

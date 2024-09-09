@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import dayjs from 'dayjs';
+import { deleteLink, setFavoriteLink } from '../../../apis/LinksPageApi/linkApi';
 import PlaceholderImg from '../../../assets/Images/placeholder-image.png';
 import DropDownKebabIcon from '../DropDown/DropDown';
 import { LinkRes } from '../../../types/linkTypes';
@@ -16,15 +17,55 @@ import {
   TimeAgo,
   TimeMenuBar,
 } from './ItemCardStyle';
+import DeleteModal from '../DeleteModal/DeleteModal';
+import EditModal from '../EditModal/EditModal';
 
 interface ItemCardProps {
   item: LinkRes;
+  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ItemCard({ item }: ItemCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+function ItemCard({ item, setIsNewItem }: ItemCardProps) {
+  const [isLoadingFavorite, setIsLoadingFavorite] = useState(false);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsDeleteModalOpen(false);
+    setIsEditModalOpen(false);
+  };
+
   const favoriteClick = () => {
-    setIsFavorite(!isFavorite);
+    if (isLoadingFavorite) return;
+    setIsLoadingFavorite(true);
+    setFavoriteLink(item.id, !item.favorite)
+      .then(() => {
+        setIsNewItem(prev => !prev);
+      })
+      .catch(e => {
+        console.error('Favorite 상태 변경 실패', e);
+      })
+      .finally(() => {
+        setIsLoadingFavorite(false);
+      });
+  };
+
+  const handleDelete = () => {
+    if (isLoadingDelete) return;
+    setIsLoadingDelete(true);
+    deleteLink(item.id)
+      .then(() => {
+        setIsNewItem(prev => !prev);
+      })
+      .catch(e => {
+        console.error('링크 삭제 실패', e);
+      })
+      .finally(() => {
+        setIsDeleteModalOpen(false);
+        setIsLoadingDelete(false);
+      });
   };
 
   //dayjs 라이브러리를 사용하여 받아온 createdAt을 YYYY.MM.DD 양식에 맞게 변환
@@ -46,11 +87,13 @@ function ItemCard({ item }: ItemCardProps) {
       <InfoContainer>
         <TimeMenuBar>
           {dateString ? <TimeAgo>{getTimeDiff(dateString)}</TimeAgo> : <></>}
-          <DropDownKebabIcon item={item} />
+          <DropDownKebabIcon setIsDeleteModalOpen={setIsDeleteModalOpen} setIsEditModalOpen={setIsEditModalOpen} />
         </TimeMenuBar>
         <InfoDescription>{item.description}</InfoDescription>
         <InfoCreatedAt>{formattedDate}</InfoCreatedAt>
       </InfoContainer>
+      <DeleteModal item={item} onDelete={handleDelete} isModalOpen={isDeleteModalOpen} closeModal={closeModal} />
+      <EditModal item={item} setIsNewItem={setIsNewItem} isModalOpen={isEditModalOpen} closeModal={closeModal} />
     </CardContainer>
   );
 }

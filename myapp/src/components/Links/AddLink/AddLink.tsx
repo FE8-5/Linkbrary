@@ -13,7 +13,6 @@ const AddLink = () => {
 
   const fetchFolderList = async () => {
     const response = await getAllFolders();
-    console.log(response);
     setFolderList(response);
     return response;
   };
