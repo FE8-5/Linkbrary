@@ -16,14 +16,12 @@ const SelectedFolderControls = ({ selectedFolderInfo, setFolderList, linkListInf
   return (
     <SelectedFolderControlsContainer>
       <SelectedFolderTitle>{selectedFolderName ? selectedFolderName : '전체'}</SelectedFolderTitle>
-      {selectedFolderInfo && linkListInfo.totalCount ? (
+      {selectedFolderInfo && (
         <FolderControls
           selectedFolderInfo={selectedFolderInfo}
           setFolderList={setFolderList}
           linkListInfo={linkListInfo}
         />
-      ) : (
-        ''
       )}
     </SelectedFolderControlsContainer>
   );
