@@ -95,7 +95,7 @@ export const setOauthApps = async (provider: string, appKey: string) => {
 
 // user
 
-export const getAllUsers = async (): Promise<UserRes> => {
+export const getUserInfo = async (): Promise<UserRes> => {
   try {
     const response = await privateInstance({
       method: 'GET',
