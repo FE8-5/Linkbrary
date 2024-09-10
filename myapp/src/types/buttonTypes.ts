@@ -28,3 +28,13 @@ export interface ButtonProps {
   backgroundColor?: string; // 버튼 배경색 사용자 지정
   hoverBackgroundColor?: string; // 버튼 호버 시 배경색 지정
 }
+
+export interface LogoButtonProps {
+  width?: string; // 로고 버튼의 너비
+  height?: string; // 로고 버튼의 높이
+}
+
+export interface StyledLogoButtonProps {
+  width: string;
+  height: string;
+}
