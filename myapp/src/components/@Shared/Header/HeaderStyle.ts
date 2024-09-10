@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
   background-color: #f0f6ff;
-  padding: 1.3rem 3.2rem;
+  padding: 1.3rem 3rem;
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 2rem 20rem;
+    padding: 2rem 13rem;
   }
   @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
     padding: 2rem 20rem;
@@ -26,15 +26,24 @@ export const ProFileSection = styled.div`
   position: relative;
 `;
 export const FavoriteBtn = styled(Link)`
-  width: 9.3rem;
-  padding: 1rem 1.2rem;
-  gap: 0.6rem;
+  width: 8rem;
+  padding: 0.8rem 0.6rem;
   border-radius: 0.4rem;
   border: 1px solid var(--primary);
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.6rem;
   color: var(--black);
+  margin-left: 2rem;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.4rem;
+
+  @media screen and (min-width: ${BREAKPOINTS.tablet}) {
+    width: 9.3rem;
+    padding: 1rem 1.2rem;
+    gap: 0.6rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+  }
 `;
 
 export const ProfileBtn = styled.button`
@@ -51,9 +60,13 @@ export const ProfileImg = styled.img`
 `;
 
 export const ProfileNickName = styled.span`
+  display: none;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.6rem;
+  @media screen and (min-width: ${BREAKPOINTS.tablet}) {
+    display: block;
+  }
 `;
 
 export const LogoutBtn = styled.button<{ $show: Boolean }>`
