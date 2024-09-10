@@ -6,7 +6,6 @@ import { getFavorites } from '../../../apis/LinksPageApi/linkApi';
 import { useResizeDebounceEffect } from '../../../hooks/useResizeDebounceEffect ';
 import { FavoriteItemContainer, FavoriteLinkContainer } from './FavoriteWrapperStyle';
 import Footer from '../../@Shared/Footer/Footer';
-import Header from '../../@Shared/Header/Header';
 
 function FavoriteWrapper() {
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
@@ -52,7 +51,6 @@ function FavoriteWrapper() {
 
   return (
     <>
-      <Header />
       <FavoriteLinkContainer>⭐️ 즐겨찾기</FavoriteLinkContainer>
       <FavoriteItemContainer>
         <ItemCardContainer
