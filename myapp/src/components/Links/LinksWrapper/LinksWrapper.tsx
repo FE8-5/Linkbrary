@@ -9,18 +9,19 @@ import { GetAllFoldersRes } from '../../../types/folderTypes';
 import { getAllLinks, getLinksByFolder } from '../../../apis/LinksPageApi/linkApi';
 import { ItemLinks } from '../../../types/linkTypes';
 import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
+import SelectedFolderControls from '../SelectedFolderControls/SelectedFolderControls';
 
 const LinksWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [folderList, setFolderList] = useState<GetAllFoldersRes[]>();
-  const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
+  const [selectedFolderInfo, setSelectedFolderInfo] = useState<GetAllFoldersRes | undefined>();
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
   const [isLoading, setIsLoading] = useState(true); // 카드 컨테이너 로딩 상태관리
   const [isNewItem, setIsNewItem] = useState(false);
   const [pageSize, setPageSize] = useState(9);
   const [pageCount, setPageCount] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  const initSearch = searchParams.get('search');
+  let initSearch = searchParams.get('search');
 
   // 데이터를 받아오는 함수
   async function fetchAllLinks(page: number, pagesize: number, search: string | null) {
@@ -36,9 +37,9 @@ const LinksWrapper = () => {
   // 페이지의 width에 맞게 fetchLinks 함수에 인자(Argument)를 넘김
   const handleResize = useCallback(() => {
     const width = window.innerWidth;
-    if (selectedFolderId) {
-      setSelectedFolderId(selectedFolderId);
-      fetchLinksByFolder(selectedFolderId, currentPage, pageSize);
+    if (selectedFolderInfo?.id) {
+      setSelectedFolderInfo(selectedFolderInfo);
+      fetchLinksByFolder(selectedFolderInfo.id, currentPage, pageSize);
     } else if (width > BREAKPOINTS_NUMERIC.largeDesktop) {
       fetchAllLinks(currentPage, 9, initSearch);
       setPageSize(9);
@@ -52,13 +53,17 @@ const LinksWrapper = () => {
       setPageSize(9);
       setPageCount(3);
     }
-  }, [initSearch, currentPage, pageSize, selectedFolderId]);
+  }, [initSearch, currentPage, pageSize, selectedFolderInfo]);
 
   // 첫 렌더링, 검색, 링크 수정 시 새 데이터 요청
   useEffect(() => {
-    setSelectedFolderId(null);
+    setSelectedFolderInfo(undefined);
     handleResize();
-  }, [handleResize, initSearch, isNewItem]);
+  }, [handleResize, isNewItem]);
+
+  useEffect(() => {
+    initSearch && setSelectedFolderInfo(undefined);
+  }, [initSearch]);
 
   // 리사이징 동작 시 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
   useEffect(() => {
@@ -95,11 +100,13 @@ const LinksWrapper = () => {
     }
   };
   const handleFolderClick = (folderId: number) => {
-    setSelectedFolderId(folderId);
+    setSearchParams({});
+    const folderInfo = folderList?.find(folder => folder.id === folderId);
+    setSelectedFolderInfo(folderInfo);
     setCurrentPage(1);
     if (folderId === 0) {
       handleResize();
-      setSelectedFolderId(null);
+      setSelectedFolderInfo(undefined);
     } else {
       fetchLinksByFolder(folderId, 1, pageSize);
     }
@@ -122,7 +129,12 @@ const LinksWrapper = () => {
         folderList={folderList}
         setFolderList={setFolderList}
         onClick={handleFolderClick}
-        selectedFolderId={selectedFolderId}
+        selectedFolderId={selectedFolderInfo?.id}
+      />
+      <SelectedFolderControls
+        selectedFolderInfo={selectedFolderInfo}
+        setFolderList={setFolderList}
+        linkListInfo={linkListInfo}
       />
       <ItemCardContainer
         linkListInfo={linkListInfo}
