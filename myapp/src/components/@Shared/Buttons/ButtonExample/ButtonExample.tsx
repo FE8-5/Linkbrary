@@ -72,9 +72,24 @@ const ButtonExamples: React.FC = () => {
         <h2>Active Button</h2>
         <Button
           onClick={() => alert('Active Button Clicked!')} // 버튼 클릭 시 알림
-          active // 버튼을 활성화 상태로 설정합니다.
+          $active // 버튼을 활성화 상태로 설정합니다.
         >
           Active
+        </Button>
+      </div>
+
+      {/* 빨간색 버튼 예제 */}
+      <div>
+        <h2>Red Button</h2>
+        <Button
+          backgroundColor="var(--red)" // 기본 배경색을 빨간색으로 설정
+          hoverBackgroundColor="var(--red-hover)" // 호버 시 더 진한 빨간색으로 설정
+          onClick={() => alert('Button clicked!')}
+          size={{ width: '28rem', height: '5.1rem' }}
+          padding={{ vertical: '1.6rem', horizontal: '2rem' }}
+          // 피그마에 있는 폴더를 삭제하는 '삭제하기' 버튼을 기준으로 만들었습니다.
+        >
+          Red Button
         </Button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { FolderButton, FolderListContainer } from './FolderListStyle';
 interface FolderListProps {
   folderList: GetAllFoldersRes[] | undefined;
   onClick: (folderId: number) => void;
-  selectedFolderId: number | null;
+  selectedFolderId: number | undefined;
 }
 
 const FolderList = ({ folderList, onClick, selectedFolderId }: FolderListProps) => {
@@ -15,12 +15,15 @@ const FolderList = ({ folderList, onClick, selectedFolderId }: FolderListProps) 
     <FolderListContainer>
       {folderList && folderList.length > 0 && (
         <>
-          <FolderButton isSelected={selectedFolderId === 0} onClick={() => handleClick(0)}>
+          <FolderButton isSelected={selectedFolderId === undefined} onClick={() => handleClick(0)}>
             전체
           </FolderButton>
           {folderList.map(folder => {
             return (
-              <FolderButton isSelected={selectedFolderId === folder.id} onClick={() => handleClick(folder.id)}>
+              <FolderButton
+                key={folder.id}
+                isSelected={selectedFolderId === folder.id}
+                onClick={() => handleClick(folder.id)}>
                 {folder.name}
               </FolderButton>
             );

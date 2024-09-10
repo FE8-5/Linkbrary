@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ButtonProps } from './Button';
+import { ButtonProps } from '../../../../types/buttonTypes';
 
 // 버튼 스타일 정의 (prop을 전달해주지 않을 경우 기본값으로 적용)
 export const StyledButton = styled.button<ButtonProps>`
@@ -9,9 +9,11 @@ export const StyledButton = styled.button<ButtonProps>`
   background: ${props =>
     props.disabled
       ? 'var(--lightgray)' // 비활성화 상태에서는 그라데이션 대신 단색
-      : props.active
-        ? `linear-gradient(to right, var(--active-start), var(--active-end))` // 활성화 상태일 때 그라데이션 배경
-        : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태일 때 그라데이션 배경
+      : props.backgroundColor
+        ? props.backgroundColor // 사용자 지정 배경색이 있는 경우
+        : props.$active
+          ? `linear-gradient(to right, var(--active-start), var(--active-end))` // 활성화 상태일 때 그라데이션 배경
+          : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태일 때 그라데이션 배경
   color: var(--white);
   border: none;
   border-radius: 0.8rem;
@@ -28,8 +30,10 @@ export const StyledButton = styled.button<ButtonProps>`
     background: ${props =>
       props.disabled
         ? 'var(--lightgray)' // 비활성화 상태에서 호버 시 배경색 유지
-        : props.active // 버튼이 클릭되고 있는 동안의 배경색을 정의
-          ? `linear-gradient(to right, var(--active-start), var(--active-end))` // 활성화 상태에서 호버 시 배경색 유지
-          : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태에서 호버 시 배경색 유지
+        : props.hoverBackgroundColor
+          ? props.hoverBackgroundColor // 사용자 지정 호버 배경색이 있는 경우
+          : props.$active // 버튼이 클릭되고 있는 동안의 배경색을 정의
+            ? `linear-gradient(to right, var(--active-start), var(--active-end))` // 활성화 상태에서 호버 시 배경색 유지
+            : `linear-gradient(to right, var(--primary), var(--secondary))`}; // 기본 상태에서 호버 시 배경색 유지
   }
 `;

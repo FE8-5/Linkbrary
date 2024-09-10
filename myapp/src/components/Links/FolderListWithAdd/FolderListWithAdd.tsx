@@ -8,7 +8,7 @@ interface FolderListWithAddProps {
   folderList: GetAllFoldersRes[] | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
   onClick: (folderId: number) => void;
-  selectedFolderId: number | null;
+  selectedFolderId: number | undefined;
 }
 
 const FolderListWithAdd = ({ folderList, setFolderList, onClick, selectedFolderId }: FolderListWithAddProps) => {
