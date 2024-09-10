@@ -1,19 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StyledLogoButton } from './LogoButtonStyle';
+import { LogoButtonProps } from '../../../../types/buttonTypes';
 import logoImg from '../../../../assets/Images/logo.png';
 
-// 로고 버튼 컴포넌트
-const LogoButton: React.FC = () => {
-  const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 처리
+// 로고 버튼 컴포넌트 (너피, 높이 값이 없으면 기본값으로 적용)
+const LogoButton: React.FC<LogoButtonProps> = ({ width = '21rem', height = 'auto' }) => {
+  const navigate = useNavigate();
 
-  // 버튼 클릭 시 호출되는 함수
   const handleClick = () => {
-    navigate('/'); // 랜딩 페이지로 이동
+    navigate('/');
   };
 
   return (
-    <StyledLogoButton onClick={handleClick}>
+    <StyledLogoButton onClick={handleClick} width={width} height={height}>
       <img src={logoImg} alt="Linkbrary 로고" />
     </StyledLogoButton>
   );
