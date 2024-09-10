@@ -12,16 +12,16 @@ export function getTimeDiff(timeToCompare: string) {
   const secondDiff: number = parseInt(timeDiffDuration.format('s'));
 
   if (yearDiff > 0) {
-    return `${yearDiff}년 전`;
+    return `${yearDiff} years ago`;
   } else if (monthDiff > 0) {
-    return `${monthDiff}달 전`;
+    return `${monthDiff} months ago`;
   } else if (dateDiff > 0) {
-    return `${dateDiff}일 전`;
+    return `${dateDiff} days ago`;
   } else if (hourDiff > 0) {
-    return `${hourDiff}시간 전`;
+    return `${hourDiff} hours ago`;
   } else if (minuteDiff > 0) {
-    return `${minuteDiff}분 전`;
+    return `${minuteDiff} minutes ago`;
   } else if (secondDiff > 0) {
-    return `${secondDiff}초 전`;
+    return `${secondDiff} seconds ago`;
   }
 }

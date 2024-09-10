@@ -6,6 +6,8 @@ export const FooterContainer = styled.div`
   max-height: 16rem;
   height: 16rem;
   background-color: #111322;
+  position: relative;
+  transform: translateY(0%);
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
   }
   @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
@@ -13,13 +15,13 @@ export const FooterContainer = styled.div`
 `;
 
 export const FooterBox = styled.div`
-  padding: 32rem;
+  padding: 3.2rem;
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 3.2rem 10.4rem 10.8rem;
+    padding: 3.2rem 10.4rem 0.8rem;
   }
 
   @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
-    padding: 3.2rem 10.4rem 10.8rem;
+    padding: 3.2rem 10.4rem 0.8rem;
   }
 `;
 
@@ -35,7 +37,7 @@ export const FooterLinkBar = styled.div`
 
 export const SinceText = styled.p`
   position: absolute;
-  top: 12.6rem;
+  top: 11rem;
   color: #676767;
   font-size: 1.6rem;
   font-weight: 400;

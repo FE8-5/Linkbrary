@@ -1,9 +1,11 @@
+import FavoriteWrapper from '../components/Links/FavoriteWrapper/FavoriteWrapper';
+
 function Favorite() {
   return (
     <>
-      <p>즐겨찾기 페이지</p>
+      <FavoriteWrapper />
     </>
-  )
+  );
 }
 
 export default Favorite;
