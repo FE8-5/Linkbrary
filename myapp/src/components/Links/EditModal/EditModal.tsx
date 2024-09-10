@@ -7,7 +7,7 @@ import { LinkEditTitle, LinkEditURL } from './EditModalStyle';
 
 interface EditModalProps {
   item: LinkRes;
-  setIsNewItem?: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   closeModal: () => void;
 }
