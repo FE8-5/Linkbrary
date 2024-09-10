@@ -72,7 +72,7 @@ const ButtonExamples: React.FC = () => {
         <h2>Active Button</h2>
         <Button
           onClick={() => alert('Active Button Clicked!')} // 버튼 클릭 시 알림
-          active // 버튼을 활성화 상태로 설정합니다.
+          $active // 버튼을 활성화 상태로 설정합니다.
         >
           Active
         </Button>
