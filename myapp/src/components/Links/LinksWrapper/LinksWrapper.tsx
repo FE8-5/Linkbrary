@@ -9,6 +9,7 @@ import { GetAllFoldersRes } from '../../../types/folderTypes';
 import { getAllLinks, getLinksByFolder } from '../../../apis/LinksPageApi/linkApi';
 import { ItemLinks } from '../../../types/linkTypes';
 import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
+import { useResizeDebounceEffect } from '../../../hooks/useResizeDebounceEffect ';
 
 const LinksWrapper = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,21 +61,8 @@ const LinksWrapper = () => {
     handleResize();
   }, [handleResize, initSearch, isNewItem]);
 
-  // 리사이징 동작 시 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
-  useEffect(() => {
-    let timer: number | undefined = undefined;
-    const getResize = () => {
-      const delay = 300;
-      clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        handleResize();
-      }, delay);
-    };
-    window.addEventListener('resize', getResize);
-    return () => {
-      window.removeEventListener('resize', getResize);
-    };
-  }, [handleResize]);
+  // 리사이징 동작 시 useDebounce 커스텀훅의 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
+  useResizeDebounceEffect(handleResize);
 
   // 아래로는 폴더 관련 함수
   const fetchFolderList = async () => {

@@ -1,12 +1,20 @@
 import styled from 'styled-components';
+import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const PaginationContainer = styled.ul`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
+  margin-bottom: 6rem;
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
+    margin-bottom: 11.3rem;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
+    margin-bottom: 9.7rem;
+  }
 `;
-export const PaginationButtonBox = styled.li`
+export const PaginationButtonBox = styled.div`
   display: flex;
   gap: 0.4rem;
   margin: 0 0.8rem;

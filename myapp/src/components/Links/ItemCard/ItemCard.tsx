@@ -30,7 +30,6 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsDeleteModalOpen(false);
@@ -42,7 +41,9 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
     setIsLoadingFavorite(true);
     setFavoriteLink(item.id, !item.favorite)
       .then(() => {
-        setIsNewItem(prev => !prev);
+        if (setIsNewItem) {
+          setIsNewItem(prev => !prev);
+        }
       })
       .catch(e => {
         console.error('Favorite 상태 변경 실패', e);
@@ -57,7 +58,9 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
     setIsLoadingDelete(true);
     deleteLink(item.id)
       .then(() => {
-        setIsNewItem(prev => !prev);
+        if (setIsNewItem) {
+          setIsNewItem(prev => !prev);
+        }
       })
       .catch(e => {
         console.error('링크 삭제 실패', e);

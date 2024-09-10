@@ -7,7 +7,7 @@ import { LinkEditTitle, LinkEditURL } from './EditModalStyle';
 
 interface EditModalProps {
   item: LinkRes;
-  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsNewItem?: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   closeModal: () => void;
 }
@@ -24,7 +24,9 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal }: EditModalPro
     setIsLoadingEdit(true);
     editLink(item.id, newURL)
       .then(() => {
-        setIsNewItem(prev => !prev);
+        if (setIsNewItem) {
+          setIsNewItem(prev => !prev);
+        }
       })
       .catch(e => {
         console.error('Favorite 상태 변경 실패', e);
