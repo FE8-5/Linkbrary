@@ -10,9 +10,10 @@ interface EditModalProps {
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
   closeModal: () => void;
+  setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal }: EditModalProps) => {
+const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModalOpen }: EditModalProps) => {
   const [newURL, setNewURL] = useState(item.url);
   const [isLoadingEdit, setIsLoadingEdit] = useState(false);
   const handleURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +32,7 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal }: EditModalPro
       })
       .finally(() => {
         setIsLoadingEdit(false);
+        setIsEditModalOpen(false);
       });
   };
 

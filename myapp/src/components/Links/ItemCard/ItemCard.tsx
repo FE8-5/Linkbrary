@@ -30,7 +30,6 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
     setIsDeleteModalOpen(false);
@@ -93,7 +92,13 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
         <InfoCreatedAt>{formattedDate}</InfoCreatedAt>
       </InfoContainer>
       <DeleteModal item={item} onDelete={handleDelete} isModalOpen={isDeleteModalOpen} closeModal={closeModal} />
-      <EditModal item={item} setIsNewItem={setIsNewItem} isModalOpen={isEditModalOpen} closeModal={closeModal} />
+      <EditModal
+        item={item}
+        setIsNewItem={setIsNewItem}
+        setIsEditModalOpen={setIsEditModalOpen}
+        isModalOpen={isEditModalOpen}
+        closeModal={closeModal}
+      />
     </CardContainer>
   );
 }
