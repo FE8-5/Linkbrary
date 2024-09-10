@@ -7,6 +7,7 @@ export const SearchLinkContainer = styled.div`
   gap: 1rem;
   padding: 1rem;
   border-radius: 1.5rem;
+  width: 100%;
 `;
 export const SearchIcon = styled.img`
   width: 1.6rem;
