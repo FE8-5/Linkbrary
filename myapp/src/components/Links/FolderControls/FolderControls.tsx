@@ -21,7 +21,7 @@ const FolderControls = ({ selectedFolderInfo, setFolderList, linkListInfo }: Fol
     setIsDeleteModalOpen(false);
   };
   const openDeleteModal = () => {
-    if (!linkListInfo) {
+    if (linkListInfo.totalCount === 0) {
       setIsDeleteModalOpen(true);
     } else {
       alert('폴더가 비어있어야 삭제가 가능합니다.');
