@@ -68,7 +68,7 @@ export const ProfileNickName = styled.span`
   }
 `;
 
-export const LogoutBtn = styled.button<{ $show: Boolean }>`
+export const LogoutBtn = styled.div<{ $show: Boolean }>`
   display: ${({ $show }) => ($show ? 'block' : 'none')};
   position: absolute;
   right: 0;
