@@ -26,6 +26,7 @@ interface ModalProps {
 
 const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewItem }: ModalProps) => {
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const handleFolderClick = (folderId: number) => {
     setSelectedFolderId(folderId);
   };
@@ -34,6 +35,8 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
     closeModal();
   };
   const handleAddLinkClick = async () => {
+    setIsLoading(true);
+
     if (selectedFolderId !== null && linkUrl !== null) {
       try {
         await addLink(linkUrl, selectedFolderId).then(() => {
@@ -54,6 +57,8 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
           setSelectedFolderId(null);
           closeModal();
         }
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -64,7 +69,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
         <AddLinkModalTitle>폴더에 추가</AddLinkModalTitle>
         <AddLinkModalSubtitle>링크주소</AddLinkModalSubtitle>
         <FolderList>
-          {folderList.map(folder => {
+          {folderList?.map(folder => {
             return (
               <Folder
                 key={folder.id}
@@ -81,6 +86,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
         </FolderList>
         <Button
           type="button"
+          isLoading={isLoading}
           onClick={handleAddLinkClick}
           size={{ width: '100%', height: '3rem' }}
           padding={{ vertical: '2.6rem' }}>
