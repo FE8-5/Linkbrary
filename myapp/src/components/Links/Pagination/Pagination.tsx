@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PaginationArrowButton, PaginationButton, PaginationButtonBox, PaginationContainer } from './PaginationStyle';
-
+import PaginationArrowRightImg from '../../../assets/Icons/pagination-arrow-right.png';
+import styled from 'styled-components';
 interface PropsType {
   totalItems: number;
   pageSize: number;
@@ -8,7 +9,13 @@ interface PropsType {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
-
+const PaginationArrowRight = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+`;
 function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPage }: PropsType) {
   const [start, setStart] = useState(1);
   const totalPages = Math.ceil(totalItems / pageSize);
@@ -33,9 +40,17 @@ function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPa
   return (
     <PaginationContainer>
       <li>
-        <PaginationArrowButton
-          onClick={() => onLeftArrowClick(currentPage)}
-          disabled={noPrev}>{`<`}</PaginationArrowButton>
+        <PaginationArrowButton onClick={() => onLeftArrowClick(currentPage)} disabled={noPrev}>
+          <img
+            src={PaginationArrowRightImg}
+            alt="페이지 네이션 왼쪽 화살표 버튼"
+            style={{
+              transform: 'scale(-1, 1)',
+              width: '20px',
+              height: '20px',
+            }}
+          />
+        </PaginationArrowButton>
       </li>
       <PaginationButtonBox>
         {Array.from(
@@ -50,9 +65,9 @@ function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPa
         <PaginationButton>...</PaginationButton>
         <PaginationButton onClick={() => onClick(totalPages)}>{totalPages}</PaginationButton>
       </PaginationButtonBox>
-      <PaginationArrowButton
-        onClick={() => onRightArrowClick(currentPage)}
-        disabled={noNext}>{`>`}</PaginationArrowButton>
+      <PaginationArrowButton onClick={() => onRightArrowClick(currentPage)} disabled={noNext}>
+        <img src={PaginationArrowRightImg} width="20px" height="20px" alt="페이지 네이션 오른쪽 화살표 버튼" />
+      </PaginationArrowButton>
     </PaginationContainer>
   );
 }
