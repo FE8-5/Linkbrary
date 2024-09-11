@@ -22,7 +22,7 @@ const LinksWrapper = () => {
   const [pageSize, setPageSize] = useState(9);
   const [pageCount, setPageCount] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
-  let initSearch = searchParams.get('search');
+  const initSearch = searchParams.get('search');
 
   // 데이터를 받아오는 함수
   async function fetchAllLinks(page: number, pagesize: number, search: string | null) {
@@ -63,7 +63,9 @@ const LinksWrapper = () => {
   }, [handleResize, isNewItem]);
 
   useEffect(() => {
-    initSearch && setSelectedFolderInfo(undefined);
+    if (initSearch) {
+      setSelectedFolderInfo(undefined);
+    }
   }, [initSearch]);
 
   // 리사이징 동작 시 useDebounce 커스텀훅의 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
