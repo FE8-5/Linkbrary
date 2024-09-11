@@ -36,7 +36,6 @@ const Header = () => {
 
   const fetchUserInfo = async () => {
     const response = await getUserInfo();
-    console.log(response);
 
     setUserProfile(response);
   };
