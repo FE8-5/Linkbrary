@@ -36,7 +36,11 @@ export const PaginationButton = styled.button<{ $currentPage?: boolean }>`
       color: #1f1f1f;
   `}
 `;
+
 export const PaginationArrowButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.6rem;
   font-weight: 600;
   color: #1f1f1f;
@@ -44,7 +48,17 @@ export const PaginationArrowButton = styled.button`
   width: 3.4rem;
   height: 3.4rem;
   border-radius: 6px;
+  border: none;
+  cursor: pointer;
+
   &:disabled {
     color: #c4c4c4;
+    cursor: not-allowed;
+    background-color: #f7f7f7;
+
+    img {
+      filter: grayscale(100%);
+      opacity: 0.3;
+    }
   }
 `;
