@@ -4,13 +4,13 @@ import ItemCardContainer from '../ItemCardContainer/ItemCardContainer';
 import SearchLink from '../SearchLink/SearchLink';
 import { Keyword, SearchResultsContent, Wrapper } from './LinksWrapperStyle';
 import { useCallback, useEffect, useState } from 'react';
-import { getAllFolders } from '../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../types/folderTypes';
 import { getAllLinks, getLinksByFolder } from '../../../apis/LinksPageApi/linkApi';
 import { ItemLinks } from '../../../types/linkTypes';
 import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 import { useResizeDebounceEffect } from '../../../hooks/useResizeDebounceEffect ';
 import SelectedFolderControls from '../SelectedFolderControls/SelectedFolderControls';
+import useGetFolderList from '../../../hooks/useGetFolderList';
 
 interface LinksWrapperProps {
   isNewItem: boolean;
@@ -19,7 +19,7 @@ interface LinksWrapperProps {
 
 const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [folderList, setFolderList] = useState<GetAllFoldersRes[]>();
+  const { data: folderList, setData: setFolderList, isLoading: folderListIsLoading } = useGetFolderList();
   const [selectedFolderInfo, setSelectedFolderInfo] = useState<GetAllFoldersRes | undefined>();
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
   const [isLoading, setIsLoading] = useState(true); // 카드 컨테이너 로딩 상태관리
@@ -75,22 +75,15 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
   // 리사이징 동작 시 useDebounce 커스텀훅의 디바운싱 이용하여 화면 크기에 맞는 데이터 요청
   useResizeDebounceEffect(handleResize);
 
-  // 아래로는 폴더 관련 함수
-  const fetchFolderList = async () => {
-    try {
-      const response = await getAllFolders();
-      setFolderList(response);
-    } catch (error) {
-      console.error('폴더를 가져오지 못했습니다.', error);
-    }
-  };
-
   const fetchLinksByFolder = async (folderId: number, page: number, pageSize: number) => {
+    setIsLoading(true);
     try {
       const response = await getLinksByFolder(folderId, page, pageSize);
       setLinkListInfo(response);
     } catch (error) {
       console.error('링크를 가져오지 못했습니다.', error);
+    } finally {
+      setIsLoading(false);
     }
   };
   const handleFolderClick = (folderId: number) => {
@@ -106,11 +99,6 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
     }
   };
 
-  //첫 랜더링시 폴더리스트
-  useEffect(() => {
-    fetchFolderList();
-  }, []);
-
   return (
     <Wrapper>
       <SearchLink initSearch={initSearch} setSearchParams={setSearchParams} />
@@ -124,6 +112,7 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
         setFolderList={setFolderList}
         onClick={handleFolderClick}
         selectedFolderId={selectedFolderInfo?.id}
+        folderListIsLoading={folderListIsLoading}
       />
       <SelectedFolderControls
         selectedFolderInfo={selectedFolderInfo}
