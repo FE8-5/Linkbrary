@@ -95,7 +95,13 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
         <InfoDescription>{item.description}</InfoDescription>
         <InfoCreatedAt>{formattedDate}</InfoCreatedAt>
       </InfoContainer>
-      <DeleteModal item={item} onDelete={handleDelete} isModalOpen={isDeleteModalOpen} closeModal={closeModal} />
+      <DeleteModal
+        item={item}
+        onDelete={handleDelete}
+        isModalOpen={isDeleteModalOpen}
+        closeModal={closeModal}
+        isLoadingDelete={isLoadingDelete}
+      />
       <EditModal
         item={item}
         setIsNewItem={setIsNewItem}
