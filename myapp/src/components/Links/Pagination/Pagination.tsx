@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { PaginationArrowButton, PaginationButton, PaginationButtonBox, PaginationContainer } from './PaginationStyle';
 import PaginationArrowRightImg from '../../../assets/Icons/pagination-arrow-right.png';
-import styled from 'styled-components';
+
 interface PropsType {
   totalItems: number;
   pageSize: number;
@@ -9,13 +9,7 @@ interface PropsType {
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
-const PaginationArrowRight = styled.img`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-`;
+
 function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPage }: PropsType) {
   const [start, setStart] = useState(1);
   const totalPages = Math.ceil(totalItems / pageSize);
