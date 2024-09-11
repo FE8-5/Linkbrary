@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <HeaderList>
-        <LogoButton />
+        <LogoButton width={'9rem'} height={'2rem'} />
         {isLoggedIn ? (
           <ProFileSection>
             <FavoriteBtn to="/favorite">⭐️ 즐겨찾기</FavoriteBtn>
