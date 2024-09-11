@@ -12,13 +12,17 @@ import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 import { useResizeDebounceEffect } from '../../../hooks/useResizeDebounceEffect ';
 import SelectedFolderControls from '../SelectedFolderControls/SelectedFolderControls';
 
-const LinksWrapper = () => {
+interface LinksWrapperProps {
+  isNewItem: boolean;
+  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [folderList, setFolderList] = useState<GetAllFoldersRes[]>();
   const [selectedFolderInfo, setSelectedFolderInfo] = useState<GetAllFoldersRes | undefined>();
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
   const [isLoading, setIsLoading] = useState(true); // 카드 컨테이너 로딩 상태관리
-  const [isNewItem, setIsNewItem] = useState(false);
   const [pageSize, setPageSize] = useState(9);
   const [pageCount, setPageCount] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);

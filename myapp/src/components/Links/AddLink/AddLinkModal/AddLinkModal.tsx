@@ -21,9 +21,10 @@ interface ModalProps {
   closeModal: () => void;
   folderList: GetAllFoldersRes[];
   linkUrl: string;
+  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl }: ModalProps) => {
+const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewItem }: ModalProps) => {
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
   const handleFolderClick = (folderId: number) => {
     setSelectedFolderId(folderId);
@@ -35,9 +36,10 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl }: ModalPro
   const handleAddLinkClick = async () => {
     if (selectedFolderId !== null && linkUrl !== null) {
       try {
-        await addLink(linkUrl, selectedFolderId); // 선택된 폴더 id로 API 호출
+        await addLink(linkUrl, selectedFolderId).then(() => {
+          setIsNewItem(prev => !prev);
+        }); // 선택된 폴더 id로 API 호출
         closeModal();
-        window.location.reload();
       } catch (err) {
         if (err instanceof AxiosError) {
           // AxiosError의 response 객체를 통해 에러 메시지 추출
