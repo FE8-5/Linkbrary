@@ -15,14 +15,14 @@ const FolderList = ({ folderList, onClick, selectedFolderId }: FolderListProps) 
     <FolderListContainer>
       {folderList && folderList.length > 0 && (
         <>
-          <FolderButton isSelected={selectedFolderId === undefined} onClick={() => handleClick(0)}>
+          <FolderButton $isSelected={selectedFolderId === undefined} onClick={() => handleClick(0)}>
             전체
           </FolderButton>
           {folderList.map(folder => {
             return (
               <FolderButton
                 key={folder.id}
-                isSelected={selectedFolderId === folder.id}
+                $isSelected={selectedFolderId === folder.id}
                 onClick={() => handleClick(folder.id)}>
                 {folder.name}
               </FolderButton>

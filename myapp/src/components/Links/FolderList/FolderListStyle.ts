@@ -8,7 +8,7 @@ export const FolderListContainer = styled.div`
   padding: 1rem 1rem;
 `;
 
-export const FolderButton = styled.button<{ isSelected: boolean }>`
+export const FolderButton = styled.button<{ $isSelected: boolean }>`
   background-color: transparent;
   border: 1px solid var(--primary);
   padding: 0.8rem 1.2rem;
@@ -16,6 +16,6 @@ export const FolderButton = styled.button<{ isSelected: boolean }>`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.9rem;
-  background-color: ${({ isSelected }) => (isSelected ? 'var(--primary)' : 'transparent')};
-  color: ${({ isSelected }) => (isSelected ? 'var(--white)' : 'var(--black)')};
+  background-color: ${({ $isSelected }) => ($isSelected ? 'var(--primary)' : 'transparent')};
+  color: ${({ $isSelected }) => ($isSelected ? 'var(--white)' : 'var(--black)')};
 `;
