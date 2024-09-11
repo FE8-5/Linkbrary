@@ -37,6 +37,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl }: ModalPro
       try {
         await addLink(linkUrl, selectedFolderId); // 선택된 폴더 id로 API 호출
         closeModal();
+        window.location.reload();
       } catch (err) {
         if (err instanceof AxiosError) {
           // AxiosError의 response 객체를 통해 에러 메시지 추출
@@ -55,7 +56,6 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl }: ModalPro
     }
   };
 
-  //이미 등록된 url일때,유효한 url이 아닐때,
   return (
     <>
       <CommonModal isModalOpen={isModalOpen} closeModal={handleCloseModal}>
