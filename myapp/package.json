@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/gapi": "^0.0.47",
+    "@types/gapi.auth2": "^0.0.60",
     "@types/react-modal": "^3.16.3",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.7.7",
