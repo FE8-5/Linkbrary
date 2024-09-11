@@ -25,7 +25,9 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
     setIsLoadingEdit(true);
     editLink(item.id, newURL)
       .then(() => {
-        setIsNewItem(prev => !prev);
+        if (setIsNewItem) {
+          setIsNewItem(prev => !prev);
+        }
       })
       .catch(e => {
         console.error('Favorite 상태 변경 실패', e);

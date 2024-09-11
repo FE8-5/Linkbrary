@@ -83,11 +83,15 @@ export const setFavoriteLink = async (linkId: number, favorite: boolean): Promis
   }
 };
 
-export const getFavorites = async (): Promise<LinkRes> => {
+export const getFavorites = async (page: number, pageSize: number): Promise<ItemLinks> => {
   try {
     const response = await privateInstance({
       method: 'GET',
       url: ENDPOINTS.getFavorites,
+      params: {
+        page,
+        pageSize,
+      },
     });
     return response.data;
   } catch (error) {
