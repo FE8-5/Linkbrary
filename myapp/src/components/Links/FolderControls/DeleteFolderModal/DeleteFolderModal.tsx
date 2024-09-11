@@ -4,6 +4,7 @@ import CommonModal from '../../../@Shared/CommonModal/CommonModal';
 import { deleteFolder } from '../../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../../types/folderTypes';
 import { DeleteFolderName, DeleteFolderTitle } from './DeleteFolderModalSyle';
+import useDeleteFolder from '../../../../hooks/useDeleteFolder';
 
 interface DeleteModalProps {
   isModalOpen: boolean;
@@ -14,22 +15,18 @@ interface DeleteModalProps {
 }
 
 const DeleteFolderModal = ({ isModalOpen, closeModal, folderName, folderId, setFolderList }: DeleteModalProps) => {
+  const { isLoading, fetchData } = useDeleteFolder(folderId);
+
   const handleDeleteFolder = async () => {
-    try {
-      if (folderId) {
-        await deleteFolder(folderId);
-        setFolderList(prevFolders => prevFolders?.filter(folder => folder.id !== folderId));
-        closeModal();
-      }
-    } catch (error) {
-      console.error('error가 발생하였습니다.');
-    }
+    fetchData();
+    setFolderList(prevFolders => prevFolders?.filter(folder => folder.id !== folderId));
+    closeModal();
   };
   return (
     <CommonModal isModalOpen={isModalOpen} closeModal={closeModal}>
       <DeleteFolderTitle>폴더 삭제</DeleteFolderTitle>
       <DeleteFolderName>{folderName}</DeleteFolderName>
-      <Button onClick={handleDeleteFolder} size={{ width: '100%' }}>
+      <Button onClick={handleDeleteFolder} size={{ width: '100%' }} isLoading={isLoading}>
         삭제하기
       </Button>
     </CommonModal>
