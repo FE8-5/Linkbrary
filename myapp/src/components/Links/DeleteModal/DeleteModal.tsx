@@ -8,9 +8,10 @@ interface DeleteModalProps {
   onDelete: () => void;
   isModalOpen: boolean;
   closeModal: () => void;
+  isLoadingDelete: boolean;
 }
 
-const DeleteModal = ({ item, onDelete, isModalOpen, closeModal }: DeleteModalProps) => {
+const DeleteModal = ({ item, onDelete, isModalOpen, closeModal, isLoadingDelete }: DeleteModalProps) => {
   const handleCloseModal = () => {
     closeModal();
   };
@@ -20,6 +21,7 @@ const DeleteModal = ({ item, onDelete, isModalOpen, closeModal }: DeleteModalPro
       <LinkDeleteURL>{item.url}</LinkDeleteURL>
       <Button
         backgroundColor="var(--red)"
+        isLoading={isLoadingDelete}
         hoverBackgroundColor="var(--red-hover)"
         onClick={onDelete}
         size={{ width: '28rem', height: '5.1rem' }}

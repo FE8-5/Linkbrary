@@ -48,6 +48,7 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
       <LinkEditURL value={newURL} onChange={handleURLChange}></LinkEditURL>
       <Button
         onClick={onEdit}
+        isLoading={isLoadingEdit}
         size={{ width: '28rem', height: '5.1rem' }}
         padding={{ vertical: '1.6rem', horizontal: '2rem' }}
         fontSize="1.6rem">
