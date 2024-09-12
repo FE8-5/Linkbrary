@@ -30,6 +30,7 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
   const [isLoadingDelete, setIsLoadingDelete] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const closeModal = () => {
     setIsDeleteModalOpen(false);
@@ -56,6 +57,7 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
   const handleDelete = () => {
     if (isLoadingDelete) return;
     setIsLoadingDelete(true);
+    setDisabled(true);
     deleteLink(item.id)
       .then(() => {
         if (setIsNewItem) {
@@ -68,6 +70,7 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
       .finally(() => {
         setIsDeleteModalOpen(false);
         setIsLoadingDelete(false);
+        setDisabled(false);
       });
   };
 
@@ -95,7 +98,14 @@ function ItemCard({ item, setIsNewItem }: ItemCardProps) {
         <InfoDescription>{item.description}</InfoDescription>
         <InfoCreatedAt>{formattedDate}</InfoCreatedAt>
       </InfoContainer>
-      <DeleteModal item={item} onDelete={handleDelete} isModalOpen={isDeleteModalOpen} closeModal={closeModal} />
+      <DeleteModal
+        item={item}
+        onDelete={handleDelete}
+        isModalOpen={isDeleteModalOpen}
+        closeModal={closeModal}
+        isLoadingDelete={isLoadingDelete}
+        disabled={disabled}
+      />
       <EditModal
         item={item}
         setIsNewItem={setIsNewItem}
