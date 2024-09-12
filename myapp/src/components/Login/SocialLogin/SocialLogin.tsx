@@ -5,6 +5,7 @@ import { GoogleUser, GoogleAuth } from '../../../types/google';
 import googleIc from '../../../assets/Icons/google.png';
 import kakaoIc from '../../../assets/Icons/kakao.png';
 import { signInWithProvider } from '../../../apis/AuthApi/authApi';
+import { GoogleLogin } from '@react-oauth/google';
 
 // 소셜 로그인 컴포넌트
 const SocialLogin: React.FC = () => {
@@ -59,6 +60,14 @@ const SocialLogin: React.FC = () => {
       <div>
         <IconButton onClick={handleGoogleLogin}>
           <img src={googleIc} alt="구글 로그인" />
+          <GoogleLogin
+            onSuccess={credentialResponse => {
+              console.log(credentialResponse);
+            }}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
         </IconButton>
         <IconButton onClick={handleKakaoLogin}>
           <img src={kakaoIc} alt="카카오 로그인" />
