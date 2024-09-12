@@ -10,10 +10,16 @@ import { ItemLinks } from '../../../types/linkTypes';
 interface FolderControlsProps {
   selectedFolderInfo: GetAllFoldersRes | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
   linkListInfo: ItemLinks;
 }
 
-const FolderControls = ({ selectedFolderInfo, setFolderList, linkListInfo }: FolderControlsProps) => {
+const FolderControls = ({
+  selectedFolderInfo,
+  setFolderList,
+  linkListInfo,
+  setSelectedFolderInfo,
+}: FolderControlsProps) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
@@ -41,6 +47,7 @@ const FolderControls = ({ selectedFolderInfo, setFolderList, linkListInfo }: Fol
           <p>이름 변경</p>
           <EditFolderModal
             isModalOpen={isEditModalOpen}
+            setSelectedFolderInfo={setSelectedFolderInfo}
             closeModal={closeEditModal}
             folderId={selectedFolderInfo?.id}
             setFolderList={setFolderList}
@@ -60,6 +67,7 @@ const FolderControls = ({ selectedFolderInfo, setFolderList, linkListInfo }: Fol
         folderName={selectedFolderInfo?.name}
         folderId={selectedFolderInfo?.id}
         setFolderList={setFolderList}
+        setSelectedFolderInfo={setSelectedFolderInfo}
       />
     </FolderControlsContainer>
   );

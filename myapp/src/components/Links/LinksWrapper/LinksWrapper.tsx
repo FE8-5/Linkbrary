@@ -118,6 +118,7 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
         selectedFolderInfo={selectedFolderInfo}
         setFolderList={setFolderList}
         linkListInfo={linkListInfo}
+        setSelectedFolderInfo={setSelectedFolderInfo}
       />
       <ItemCardContainer
         linkListInfo={linkListInfo}

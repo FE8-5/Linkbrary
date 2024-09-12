@@ -11,9 +11,16 @@ interface EditModalProps {
   closeModal: () => void;
   folderId: number | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
 }
 
-const EditFolderModal = ({ isModalOpen, closeModal, folderId, setFolderList }: EditModalProps) => {
+const EditFolderModal = ({
+  isModalOpen,
+  closeModal,
+  folderId,
+  setFolderList,
+  setSelectedFolderInfo,
+}: EditModalProps) => {
   const [editValue, setEditValue] = useState<string>('');
   const { isLoading, disabled, fetchData } = useEditFolder(folderId, editValue);
 
@@ -23,6 +30,7 @@ const EditFolderModal = ({ isModalOpen, closeModal, folderId, setFolderList }: E
       setFolderList(prevFolder =>
         prevFolder?.map(folder => (folder.id === folderId ? { ...folder, name: response.name } : folder))
       );
+      setSelectedFolderInfo(undefined);
     }
     closeModal();
   };

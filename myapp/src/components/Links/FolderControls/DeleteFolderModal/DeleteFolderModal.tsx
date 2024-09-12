@@ -12,14 +12,23 @@ interface DeleteModalProps {
   folderName: string | undefined;
   folderId: number | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
 }
 
-const DeleteFolderModal = ({ isModalOpen, closeModal, folderName, folderId, setFolderList }: DeleteModalProps) => {
+const DeleteFolderModal = ({
+  isModalOpen,
+  closeModal,
+  folderName,
+  folderId,
+  setFolderList,
+  setSelectedFolderInfo,
+}: DeleteModalProps) => {
   const { isLoading, disabled, fetchData } = useDeleteFolder(folderId);
 
   const handleDeleteFolder = async () => {
     fetchData();
     setFolderList(prevFolders => prevFolders?.filter(folder => folder.id !== folderId));
+    setSelectedFolderInfo(undefined);
     closeModal();
   };
   return (
