@@ -15,7 +15,7 @@ interface DeleteModalProps {
 }
 
 const DeleteFolderModal = ({ isModalOpen, closeModal, folderName, folderId, setFolderList }: DeleteModalProps) => {
-  const { isLoading, fetchData } = useDeleteFolder(folderId);
+  const { isLoading, disabled, fetchData } = useDeleteFolder(folderId);
 
   const handleDeleteFolder = async () => {
     fetchData();
@@ -26,7 +26,7 @@ const DeleteFolderModal = ({ isModalOpen, closeModal, folderName, folderId, setF
     <CommonModal isModalOpen={isModalOpen} closeModal={closeModal}>
       <DeleteFolderTitle>폴더 삭제</DeleteFolderTitle>
       <DeleteFolderName>{folderName}</DeleteFolderName>
-      <Button onClick={handleDeleteFolder} size={{ width: '100%' }} isLoading={isLoading}>
+      <Button onClick={handleDeleteFolder} size={{ width: '100%' }} disabled={disabled} isLoading={isLoading}>
         삭제하기
       </Button>
     </CommonModal>

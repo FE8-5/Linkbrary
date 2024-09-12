@@ -9,9 +9,10 @@ interface DeleteModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
   isLoadingDelete: boolean;
+  disabled: boolean;
 }
 
-const DeleteModal = ({ item, onDelete, isModalOpen, closeModal, isLoadingDelete }: DeleteModalProps) => {
+const DeleteModal = ({ item, onDelete, isModalOpen, closeModal, isLoadingDelete, disabled }: DeleteModalProps) => {
   const handleCloseModal = () => {
     closeModal();
   };
@@ -26,6 +27,7 @@ const DeleteModal = ({ item, onDelete, isModalOpen, closeModal, isLoadingDelete 
         onClick={onDelete}
         size={{ width: '28rem', height: '5.1rem' }}
         padding={{ vertical: '1.6rem', horizontal: '2rem' }}
+        disabled={disabled}
         fontSize="1.6rem">
         삭제하기
       </Button>

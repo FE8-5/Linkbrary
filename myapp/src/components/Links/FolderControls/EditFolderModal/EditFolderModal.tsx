@@ -15,7 +15,7 @@ interface EditModalProps {
 
 const EditFolderModal = ({ isModalOpen, closeModal, folderId, setFolderList }: EditModalProps) => {
   const [editValue, setEditValue] = useState<string>('');
-  const { isLoading, fetchData } = useEditFolder(folderId, editValue);
+  const { isLoading, disabled, fetchData } = useEditFolder(folderId, editValue);
 
   const handleEditFolder = async () => {
     const response = await fetchData();
@@ -34,7 +34,7 @@ const EditFolderModal = ({ isModalOpen, closeModal, folderId, setFolderList }: E
     <CommonModal isModalOpen={isModalOpen} closeModal={closeModal}>
       <EditFolderTitle>폴더 이름 변경</EditFolderTitle>
       <EditFolderInput value={editValue} onChange={handleChangeEditInput} />
-      <Button onClick={handleEditFolder} size={{ width: '100%' }} isLoading={isLoading}>
+      <Button onClick={handleEditFolder} size={{ width: '100%' }} disabled={disabled} isLoading={isLoading}>
         변경하기
       </Button>
     </CommonModal>

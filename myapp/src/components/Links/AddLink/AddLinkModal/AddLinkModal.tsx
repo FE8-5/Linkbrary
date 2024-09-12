@@ -27,6 +27,7 @@ interface ModalProps {
 const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewItem }: ModalProps) => {
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const handleFolderClick = (folderId: number) => {
     setSelectedFolderId(folderId);
   };
@@ -36,7 +37,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
   };
   const handleAddLinkClick = async () => {
     setIsLoading(true);
-
+    setDisabled(true);
     if (selectedFolderId !== null && linkUrl !== null) {
       try {
         await addLink(linkUrl, selectedFolderId).then(() => {
@@ -59,6 +60,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
         }
       } finally {
         setIsLoading(false);
+        setDisabled(false);
       }
     }
   };
@@ -89,6 +91,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
           isLoading={isLoading}
           onClick={handleAddLinkClick}
           size={{ width: '100%', height: '3rem' }}
+          disabled={disabled}
           padding={{ vertical: '2.6rem' }}>
           추가하기
         </Button>
