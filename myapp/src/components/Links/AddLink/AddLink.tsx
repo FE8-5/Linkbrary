@@ -6,7 +6,11 @@ import AddLinkModal from './AddLinkModal/AddLinkModal';
 import { getAllFolders } from '../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../types/folderTypes';
 
-const AddLink = () => {
+interface AddLinkProps {
+  setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddLink = ({ setIsNewItem }: AddLinkProps) => {
   const [value, setValue] = useState<string>('');
   const [folderList, setFolderList] = useState<GetAllFoldersRes[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,7 +55,13 @@ const AddLink = () => {
           onKeyDown={handleSearchKeyDown}
         />
         <Button onClick={handleClick}>추가하기</Button>
-        <AddLinkModal isModalOpen={isModalOpen} closeModal={closeModal} folderList={folderList} linkUrl={value} />
+        <AddLinkModal
+          isModalOpen={isModalOpen}
+          closeModal={closeModal}
+          folderList={folderList}
+          linkUrl={value}
+          setIsNewItem={setIsNewItem}
+        />
       </AddLinkInputContainer>
     </AddLinkContainer>
   );

@@ -19,6 +19,8 @@ const DeleteModal = ({ item, onDelete, isModalOpen, closeModal }: DeleteModalPro
       <LinkDeleteTitle>링크 삭제</LinkDeleteTitle>
       <LinkDeleteURL>{item.url}</LinkDeleteURL>
       <Button
+        backgroundColor="var(--red)"
+        hoverBackgroundColor="var(--red-hover)"
         onClick={onDelete}
         size={{ width: '28rem', height: '5.1rem' }}
         padding={{ vertical: '1.6rem', horizontal: '2rem' }}
