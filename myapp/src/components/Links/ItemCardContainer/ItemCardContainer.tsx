@@ -2,7 +2,6 @@ import ItemCard from '../ItemCard/ItemCard';
 import { ItemCardGrid, NoLink } from './ItemCardContainerStyle';
 import { ItemLinks } from '../../../types/linkTypes';
 import Pagination from '../Pagination/Pagination';
-import LoadingSpinner from '../../@Shared/LoadingSpinner/LoadingSpinner';
 interface PropsType {
   linkListInfo: ItemLinks;
   isLoading: boolean;
@@ -23,7 +22,7 @@ function ItemCardContainer({
   setCurrentPage,
 }: PropsType) {
   if (isLoading) {
-    return <LoadingSpinner width="7rem" />;
+    return <div>loading...</div>;
   }
   if (linkListInfo.list.length <= 0) {
     return <NoLink>저장된 링크가 없습니다</NoLink>;
