@@ -8,6 +8,8 @@ interface SelectedFolderControlsProps {
   selectedFolderInfo: GetAllFoldersRes | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
   setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
+  setUpdateFolders: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleteFolderState: React.Dispatch<React.SetStateAction<boolean>>;
   linkListInfo: ItemLinks;
 }
 
@@ -16,6 +18,8 @@ const SelectedFolderControls = ({
   setFolderList,
   linkListInfo,
   setSelectedFolderInfo,
+  setUpdateFolders,
+  setDeleteFolderState,
 }: SelectedFolderControlsProps) => {
   const selectedFolderName = selectedFolderInfo?.name;
 
@@ -28,6 +32,8 @@ const SelectedFolderControls = ({
           setSelectedFolderInfo={setSelectedFolderInfo}
           setFolderList={setFolderList}
           linkListInfo={linkListInfo}
+          setUpdateFolders={setUpdateFolders}
+          setDeleteFolderState={setDeleteFolderState}
         />
       )}
     </SelectedFolderControlsContainer>

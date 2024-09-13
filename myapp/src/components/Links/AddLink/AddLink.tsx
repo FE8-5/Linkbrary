@@ -9,11 +9,13 @@ interface AddLinkProps {
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
   updateLinks: boolean;
   setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
+  updateFolders: boolean;
+  deleteFolderState: boolean;
 }
 
-const AddLink = ({ setIsNewItem, setUpdateLinks, updateLinks }: AddLinkProps) => {
+const AddLink = ({ setIsNewItem, setUpdateLinks, updateLinks, updateFolders, deleteFolderState }: AddLinkProps) => {
   const [value, setValue] = useState<string>('');
-  const { data: folderList } = useGetFolderList(updateLinks);
+  const { data: folderList } = useGetFolderList(updateLinks, updateFolders, deleteFolderState);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // 모달을 닫는 함수

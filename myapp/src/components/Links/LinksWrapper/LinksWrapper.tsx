@@ -17,9 +17,18 @@ interface LinksWrapperProps {
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
   updateLinks: boolean;
   setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdateFolders: React.Dispatch<React.SetStateAction<boolean>>;
+  setDeleteFolderState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LinksWrapper = ({ isNewItem, setIsNewItem, setUpdateLinks, updateLinks }: LinksWrapperProps) => {
+const LinksWrapper = ({
+  isNewItem,
+  setIsNewItem,
+  setUpdateLinks,
+  updateLinks,
+  setUpdateFolders,
+  setDeleteFolderState,
+}: LinksWrapperProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { data: folderList, setData: setFolderList, isLoading: folderListIsLoading } = useGetFolderList(updateLinks);
   const [selectedFolderInfo, setSelectedFolderInfo] = useState<GetAllFoldersRes | undefined>();
@@ -126,6 +135,8 @@ const LinksWrapper = ({ isNewItem, setIsNewItem, setUpdateLinks, updateLinks }: 
         setFolderList={setFolderList}
         linkListInfo={linkListInfo}
         setSelectedFolderInfo={setSelectedFolderInfo}
+        setUpdateFolders={setUpdateFolders}
+        setDeleteFolderState={setDeleteFolderState}
       />
       <ItemCardContainer
         linkListInfo={linkListInfo}

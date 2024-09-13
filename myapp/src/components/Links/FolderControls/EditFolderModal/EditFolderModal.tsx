@@ -12,6 +12,7 @@ interface EditModalProps {
   folderId: number | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
   setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
+  setUpdateFolders: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditFolderModal = ({
@@ -20,6 +21,7 @@ const EditFolderModal = ({
   folderId,
   setFolderList,
   setSelectedFolderInfo,
+  setUpdateFolders,
 }: EditModalProps) => {
   const [editValue, setEditValue] = useState<string>('');
   const { isLoading, disabled, fetchData } = useEditFolder(folderId, editValue);
@@ -30,6 +32,7 @@ const EditFolderModal = ({
       setFolderList(prevFolder =>
         prevFolder?.map(folder => (folder.id === folderId ? { ...folder, name: response.name } : folder))
       );
+      setUpdateFolders(prev => !prev);
       setSelectedFolderInfo(undefined);
     }
     closeModal();

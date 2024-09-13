@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getAllFolders } from '../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../types/folderTypes';
 
-const useGetFolderList = (updateLinks?: boolean) => {
+const useGetFolderList = (updateLinks?: boolean, updateFolders?: boolean, deleteFolderState?: boolean) => {
   const [data, setData] = useState<GetAllFoldersRes[] | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -22,7 +22,7 @@ const useGetFolderList = (updateLinks?: boolean) => {
 
   useEffect(() => {
     fetchData();
-  }, [updateLinks]);
+  }, [updateLinks, updateFolders, deleteFolderState]);
 
   return { data, setData, isLoading, error };
 };
