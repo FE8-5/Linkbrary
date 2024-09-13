@@ -1,7 +1,15 @@
 import ItemCard from '../ItemCard/ItemCard';
-import { ItemCardGrid, NoLink } from './ItemCardContainerStyle';
+import { ItemCardGrid } from './ItemCardContainerStyle';
 import { ItemLinks } from '../../../types/linkTypes';
 import Pagination from '../Pagination/Pagination';
+import {
+  SkeletonCardContainer,
+  SkeletonCardCreatedAt,
+  SkeletonCardDescription,
+  SkeletonCardInfoBox,
+  SkeletonCardTimeDiff,
+} from './SkeletonCardStyle';
+
 interface PropsType {
   linkListInfo: ItemLinks;
   isLoading: boolean;
@@ -22,11 +30,25 @@ function ItemCardContainer({
   setCurrentPage,
 }: PropsType) {
   if (isLoading) {
-    return <div>loading...</div>;
+    return (
+      <ItemCardGrid>
+        {Array.from(
+          { length: pageSize },
+          (_, i) =>
+            i <= pageSize && (
+              <SkeletonCardContainer>
+                <SkeletonCardInfoBox>
+                  <SkeletonCardTimeDiff />
+                  <SkeletonCardDescription />
+                  <SkeletonCardCreatedAt />
+                </SkeletonCardInfoBox>
+              </SkeletonCardContainer>
+            )
+        )}
+      </ItemCardGrid>
+    );
   }
-  if (linkListInfo.list.length <= 0) {
-    return <NoLink>저장된 링크가 없습니다</NoLink>;
-  }
+
   return (
     <>
       <ItemCardGrid>
