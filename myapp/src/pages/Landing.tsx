@@ -2,6 +2,11 @@ import styles from '../styles/Landing/Landing.module.css';
 import Footer from '../components/@Shared/Footer/Footer';
 import Header from '../components/@Shared/Header/Header';
 import { useNavigate } from 'react-router-dom';
+import homeHeroImg from '../assets/Images/home-hero-img.png';
+import saveLinkImg from '../assets/Images/save-link-img.png';
+import manageLinkImg from '../assets/Images/manage-link-img.png';
+import shareLinkImg from '../assets/Images/share-link-img.png';
+import searchLinkImg from '../assets/Images/search-link-img.png';
 
 const Page: React.FC = () => {
   const navigate = useNavigate();
@@ -27,7 +32,7 @@ const Page: React.FC = () => {
               링크 추가하기
             </button>
           </div>
-          <img className={styles['home-hero-img']} alt="home-hero-img" src="src/assets/images/home-hero-img.png" />
+          <img className={styles['home-hero-img']} alt="home-hero-img" src={homeHeroImg} />
         </main>
 
         <section className={styles.section}>
@@ -45,14 +50,14 @@ const Page: React.FC = () => {
             </p>
             <img
               alt="save-link-img"
-              src="src/assets/images/save-link-img.png"
+              src={saveLinkImg}
               className={`${styles['content-imgs']} ${styles.right} ${styles.mobile}`}
             />
           </article>
           <article className={`${styles.article} ${styles.mobile}`}>
             <img
               alt="manage-link-img"
-              src="src/assets/images/manage-link-img.png"
+              src={manageLinkImg}
               className={`${styles['content-imgs']} ${styles.left} ${styles.mobile}`}
             />
 
@@ -61,7 +66,7 @@ const Page: React.FC = () => {
               <span className={styles['manage-link-gradient']}>관리</span>하세요
             </h2>
             <p className={`${styles.right} ${styles.mobile}`}>
-              나만의 폴더를 무제함으로 만들고
+              나만의 폴더를 무제한으로 만들고
               <br className={styles['hidden-br-mobile']} />
               다양하게 활용할 수 있습니다.
             </p>
@@ -81,14 +86,14 @@ const Page: React.FC = () => {
 
             <img
               alt="share-link-img"
-              src="src/assets/images/share-link-img.png"
+              src={shareLinkImg}
               className={`${styles['content-imgs']} ${styles.right} ${styles.mobile}`}
             />
           </article>
           <article className={`${styles.article} ${styles.mobile}`}>
             <img
               alt="search-link-img"
-              src="src/assets/images/search-link-img.png"
+              src={searchLinkImg}
               className={`${styles['content-imgs']} ${styles.left} ${styles.mobile}`}
             />
 
@@ -99,7 +104,7 @@ const Page: React.FC = () => {
             <p className={`${styles.right} ${styles.mobile}`}>중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
           </article>
         </section>
-        <Footer></Footer>
+        <Footer />
       </div>
     </>
   );
