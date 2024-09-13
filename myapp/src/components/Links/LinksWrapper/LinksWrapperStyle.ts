@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const Wrapper = styled.div`
+  min-height: calc(100vh - 16rem);
   max-width: 106rem;
   display: flex;
   flex-direction: column;
