@@ -44,4 +44,5 @@ export const AddLinkInput = styled.input`
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 2.4rem;
+  width: 1rem;
 `;
