@@ -21,14 +21,14 @@ const DeleteModal = ({ item, onDelete, isModalOpen, closeModal, isLoadingDelete,
       <LinkDeleteTitle>링크 삭제</LinkDeleteTitle>
       <LinkDeleteURL>{item.url}</LinkDeleteURL>
       <Button
-        backgroundColor="var(--red)"
+        $backgroundColor="var(--red)"
         isLoading={isLoadingDelete}
-        hoverBackgroundColor="var(--red-hover)"
+        $hoverBackgroundColor="var(--red-hover)"
         onClick={onDelete}
         size={{ width: '28rem', height: '5.1rem' }}
-        padding={{ vertical: '1.6rem', horizontal: '2rem' }}
-        disabled={disabled}
-        fontSize="1.6rem">
+        $padding={{ vertical: '1.6rem', horizontal: '2rem' }}
+        $disabled={disabled}
+        $fontSize="1.6rem">
         삭제하기
       </Button>
     </CommonModal>

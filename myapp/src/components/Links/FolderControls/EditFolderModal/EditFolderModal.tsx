@@ -42,7 +42,7 @@ const EditFolderModal = ({
     <CommonModal isModalOpen={isModalOpen} closeModal={closeModal}>
       <EditFolderTitle>폴더 이름 변경</EditFolderTitle>
       <EditFolderInput value={editValue} onChange={handleChangeEditInput} />
-      <Button onClick={handleEditFolder} size={{ width: '100%' }} disabled={disabled} isLoading={isLoading}>
+      <Button onClick={handleEditFolder} size={{ width: '100%' }} $disabled={disabled} isLoading={isLoading}>
         변경하기
       </Button>
     </CommonModal>

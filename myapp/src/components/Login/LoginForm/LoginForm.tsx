@@ -70,6 +70,7 @@ const LoginForm: React.FC = () => {
           <Input
             type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="password"
+            autoComplete="on"
             {...register('password', {
               required: '비밀번호는 필수 항목입니다.',
               minLength: {
@@ -91,8 +92,8 @@ const LoginForm: React.FC = () => {
       <Button
         type="submit"
         size={{ width: '100%', height: '5.3rem' }}
-        padding={{ vertical: '1.6rem', horizontal: 'auto' }}
-        fontSize="1.8rem">
+        $padding={{ vertical: '1.6rem', horizontal: 'auto' }}
+        $fontSize="1.8rem">
         로그인
       </Button>
     </StyledLoginForm>

@@ -18,15 +18,15 @@ export interface ButtonProps {
   // 버튼의 패딩을 설정하는 객체
   // - `vertical`: 버튼의 수직 패딩을 설정합니다. (예: '0.8rem')
   // - `horizontal`: 버튼의 수평 패딩을 설정합니다. (예: '1.6rem')
-  fontSize?: string; // 버튼 텍스트의 폰트 크기를 설정합니다. (예: '1.6rem')
+  $fontSize?: string; // 버튼 텍스트의 폰트 크기를 설정합니다. (예: '1.6rem')
   $active?: boolean;
   // 버튼이 클릭된 상태인지 여부를 나타냅니다.
   // 버튼이 활성화된 상태일 때 해당 prop을 통해 스타일이 변경됩니다.
-  disabled?: boolean;
+  $disabled?: boolean;
   // 버튼이 비활성화된 상태인지 여부를 나타냅니다.
   // 버튼이 비활성화된 상태에서는 클릭이 불가능하며 스타일이 변경됩니다.
-  backgroundColor?: string; // 버튼 배경색 사용자 지정
-  hoverBackgroundColor?: string; // 버튼 호버 시 배경색 지정
+  $backgroundColor?: string; // 버튼 배경색 사용자 지정
+  $hoverBackgroundColor?: string; // 버튼 호버 시 배경색 지정
   isLoading?: boolean;
 }
 
