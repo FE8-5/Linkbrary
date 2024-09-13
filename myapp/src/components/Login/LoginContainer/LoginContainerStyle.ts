@@ -23,6 +23,6 @@ export const StyledLoginContainer = styled.div`
   @media (min-width: ${BREAKPOINTS.largeDesktop}) {
     // 데스크탑에서 최대 너비와 상단 여백 설정
     max-width: 40rem;
-    margin-top: 20em;
+    margin-top: 20rem;
   }
 `;
