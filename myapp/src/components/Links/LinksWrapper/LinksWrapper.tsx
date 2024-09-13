@@ -29,15 +29,22 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
   const initSearch = searchParams.get('search');
 
   // 데이터를 받아오는 함수
-  async function fetchAllLinks(page: number, pagesize: number, search: string | null) {
-    try {
-      const links: ItemLinks = await getAllLinks(page, pagesize, search);
-      setLinkListInfo(links);
-      setIsLoading(false);
-    } catch (error) {
-      console.error('데이터 받아오기 실패:', error);
-    }
-  }
+  const fetchAllLinks = useCallback(
+    async (page: number, pageSize: number, search: string | null) => {
+      try {
+        const links: ItemLinks = await getAllLinks(page, pageSize, search);
+        setLinkListInfo(links);
+        if (links.totalCount === 0) {
+          setIsLoading(true);
+        }
+      } catch (error) {
+        console.error('데이터 받아오기 실패:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [setLinkListInfo]
+  );
 
   // 페이지의 width에 맞게 fetchLinks 함수에 인자(Argument)를 넘김
   const handleResize = useCallback(() => {
@@ -58,7 +65,7 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
       setPageSize(9);
       setPageCount(3);
     }
-  }, [initSearch, currentPage, pageSize, selectedFolderInfo]);
+  }, [initSearch, currentPage, pageSize, selectedFolderInfo, fetchAllLinks]);
 
   // 첫 렌더링, 검색, 링크 수정 시 새 데이터 요청
   useEffect(() => {
@@ -76,14 +83,11 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
   useResizeDebounceEffect(handleResize);
 
   const fetchLinksByFolder = async (folderId: number, page: number, pageSize: number) => {
-    setIsLoading(true);
     try {
       const response = await getLinksByFolder(folderId, page, pageSize);
       setLinkListInfo(response);
     } catch (error) {
       console.error('링크를 가져오지 못했습니다.', error);
-    } finally {
-      setIsLoading(false);
     }
   };
   const handleFolderClick = (folderId: number) => {

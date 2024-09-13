@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
-
+export const FavoriteContainer = styled.div`
+  height: 100%;
+  min-height: calc(100vh - 16rem);
+`;
 export const FavoriteLinkContainer = styled.div`
   display: flex;
   justify-content: center;
