@@ -1,10 +1,19 @@
 import styled from 'styled-components';
+import { BREAKPOINTS } from '../../../constatnts/Breakpoint';
 
 export const FolderControlsContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
   gap: 1rem;
+  top: 3.6rem;
+  @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
+    position: relative;
+  }
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
+    position: relative;
+  }
 `;
 
 export const EditFolder = styled.button`
