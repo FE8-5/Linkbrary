@@ -70,6 +70,7 @@ const LoginForm: React.FC = () => {
           <Input
             type={showPassword ? 'text' : 'password'} // 비밀번호 가시성에 따라 타입 변경
             id="password"
+            autoComplete="on"
             {...register('password', {
               required: '비밀번호는 필수 항목입니다.',
               minLength: {
