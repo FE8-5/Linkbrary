@@ -16,6 +16,8 @@ interface EditModalProps {
 const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModalOpen }: EditModalProps) => {
   const [newURL, setNewURL] = useState(item.url);
   const [isLoadingEdit, setIsLoadingEdit] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
   const handleURLChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewURL(event.target.value);
   };
@@ -23,6 +25,7 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
   const onEdit = () => {
     if (isLoadingEdit) return;
     setIsLoadingEdit(true);
+    setDisabled(true);
     editLink(item.id, newURL)
       .then(() => {
         if (setIsNewItem) {
@@ -35,6 +38,7 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
       .finally(() => {
         setIsLoadingEdit(false);
         setIsEditModalOpen(false);
+        setDisabled(false);
       });
   };
 
@@ -48,8 +52,10 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
       <LinkEditURL value={newURL} onChange={handleURLChange}></LinkEditURL>
       <Button
         onClick={onEdit}
+        isLoading={isLoadingEdit}
         size={{ width: '28rem', height: '5.1rem' }}
         padding={{ vertical: '1.6rem', horizontal: '2rem' }}
+        disabled={disabled}
         fontSize="1.6rem">
         수정하기
       </Button>

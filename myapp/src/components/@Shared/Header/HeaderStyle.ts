@@ -26,7 +26,7 @@ export const ProFileSection = styled.div`
   position: relative;
 `;
 export const FavoriteBtn = styled(Link)`
-  width: 8rem;
+  width: 100%;
   padding: 0.8rem 0.6rem;
   border-radius: 0.4rem;
   border: 1px solid var(--primary);
@@ -38,7 +38,6 @@ export const FavoriteBtn = styled(Link)`
   line-height: 1.4rem;
 
   @media screen and (min-width: ${BREAKPOINTS.tablet}) {
-    width: 9.3rem;
     padding: 1rem 1.2rem;
     gap: 0.6rem;
     font-size: 1.4rem;
@@ -69,7 +68,7 @@ export const ProfileNickName = styled.span`
   }
 `;
 
-export const LogoutBtn = styled.button<{ $show: Boolean }>`
+export const LogoutBtn = styled.div<{ $show: Boolean }>`
   display: ${({ $show }) => ($show ? 'block' : 'none')};
   position: absolute;
   right: 0;

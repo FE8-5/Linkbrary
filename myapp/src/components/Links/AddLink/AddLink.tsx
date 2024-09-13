@@ -5,6 +5,7 @@ import { ChangeEvent, useState } from 'react';
 import AddLinkModal from './AddLinkModal/AddLinkModal';
 import { getAllFolders } from '../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../types/folderTypes';
+import useGetFolderList from '../../../hooks/useGetFolderList';
 
 interface AddLinkProps {
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,14 +13,8 @@ interface AddLinkProps {
 
 const AddLink = ({ setIsNewItem }: AddLinkProps) => {
   const [value, setValue] = useState<string>('');
-  const [folderList, setFolderList] = useState<GetAllFoldersRes[]>([]);
+  const { data: folderList, error, isLoading } = useGetFolderList();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const fetchFolderList = async () => {
-    const response = await getAllFolders();
-    setFolderList(response);
-    return response;
-  };
 
   // 모달을 닫는 함수
   const closeModal = () => {
@@ -34,8 +29,7 @@ const AddLink = ({ setIsNewItem }: AddLinkProps) => {
       alert('링크를 입력주세요!!');
       return;
     }
-    const response = await fetchFolderList();
-    if (response.length > 0) {
+    if (folderList.length > 0) {
       setIsModalOpen(true);
     } else {
       alert('폴더를 추가해주세요');

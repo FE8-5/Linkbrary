@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyledButton } from './ButtonStyle';
 import { ButtonProps } from '../../../../types/buttonTypes';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 
 /**
  * 코드가 복잡하여 해당 컴포넌트의 사용 예제를 만들어두었습니다.
@@ -30,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   backgroundColor,
   hoverBackgroundColor,
+  isLoading = false,
 }) => {
   // 버튼의 클릭 여부를 상태 관리로 전달
   const [isActive, setIsActive] = useState(false);
@@ -56,7 +58,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       backgroundColor={backgroundColor}
       hoverBackgroundColor={hoverBackgroundColor}>
-      {children}
+      {isLoading ? <LoadingSpinner width="2rem" /> : children}
     </StyledButton>
   );
 };

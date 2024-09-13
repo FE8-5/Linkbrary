@@ -27,6 +27,7 @@ export interface ButtonProps {
   // 버튼이 비활성화된 상태에서는 클릭이 불가능하며 스타일이 변경됩니다.
   backgroundColor?: string; // 버튼 배경색 사용자 지정
   hoverBackgroundColor?: string; // 버튼 호버 시 배경색 지정
+  isLoading?: boolean;
 }
 
 export interface LogoButtonProps {

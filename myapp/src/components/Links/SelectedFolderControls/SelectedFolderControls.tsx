@@ -7,10 +7,16 @@ import { ItemLinks } from '../../../types/linkTypes';
 interface SelectedFolderControlsProps {
   selectedFolderInfo: GetAllFoldersRes | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
   linkListInfo: ItemLinks;
 }
 
-const SelectedFolderControls = ({ selectedFolderInfo, setFolderList, linkListInfo }: SelectedFolderControlsProps) => {
+const SelectedFolderControls = ({
+  selectedFolderInfo,
+  setFolderList,
+  linkListInfo,
+  setSelectedFolderInfo,
+}: SelectedFolderControlsProps) => {
   const selectedFolderName = selectedFolderInfo?.name;
 
   return (
@@ -19,6 +25,7 @@ const SelectedFolderControls = ({ selectedFolderInfo, setFolderList, linkListInf
       {selectedFolderInfo && (
         <FolderControls
           selectedFolderInfo={selectedFolderInfo}
+          setSelectedFolderInfo={setSelectedFolderInfo}
           setFolderList={setFolderList}
           linkListInfo={linkListInfo}
         />

@@ -9,12 +9,24 @@ interface FolderListWithAddProps {
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
   onClick: (folderId: number) => void;
   selectedFolderId: number | undefined;
+  folderListIsLoading: boolean;
 }
 
-const FolderListWithAdd = ({ folderList, setFolderList, onClick, selectedFolderId }: FolderListWithAddProps) => {
+const FolderListWithAdd = ({
+  folderList,
+  setFolderList,
+  onClick,
+  selectedFolderId,
+  folderListIsLoading,
+}: FolderListWithAddProps) => {
   return (
     <FolderListWithAddContainer>
-      <FolderList folderList={folderList} onClick={onClick} selectedFolderId={selectedFolderId} />
+      <FolderList
+        folderList={folderList}
+        onClick={onClick}
+        selectedFolderId={selectedFolderId}
+        folderListIsLoading={folderListIsLoading}
+      />
       <AddFolderBtn setFolderList={setFolderList} />
     </FolderListWithAddContainer>
   );
