@@ -20,6 +20,11 @@ export const Text = styled.span`
   font-size: 1.4rem;
 `;
 
+export const IconButtonArea = styled.div`
+  display: flex;
+  gap: 1.6rem;
+`;
+
 // 아이콘 버튼 스타일
 export const IconButton = styled.button`
   background: none;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSocialLogin, IconButton, Text } from './SocialLoginStyle';
+import { StyledSocialLogin, IconButtonArea, IconButton, Text } from './SocialLoginStyle';
 import googleIc from '../../../assets/Icons/google.png';
 import kakaoIc from '../../../assets/Icons/kakao.png';
 
@@ -28,14 +28,14 @@ const SocialLogin: React.FC = () => {
   return (
     <StyledSocialLogin>
       <Text>소셜 로그인</Text>
-      <div>
+      <IconButtonArea>
         <IconButton onClick={handleGoogleLogin}>
           <img src={googleIc} alt="구글 로그인" />
         </IconButton>
         <IconButton onClick={handleKakaoLogin}>
           <img src={kakaoIc} alt="카카오 로그인" />
         </IconButton>
-      </div>
+      </IconButtonArea>
     </StyledSocialLogin>
   );
 };

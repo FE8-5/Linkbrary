@@ -27,10 +27,10 @@ const Button: React.FC<ButtonProps> = ({
   children,
   size = {},
   $padding = {},
-  fontSize = '1.6rem',
-  disabled = false,
-  backgroundColor,
-  hoverBackgroundColor,
+  $fontSize = '1.6rem',
+  $disabled = false,
+  $backgroundColor,
+  $hoverBackgroundColor,
   isLoading = false,
 }) => {
   // 버튼의 클릭 여부를 상태 관리로 전달
@@ -38,7 +38,7 @@ const Button: React.FC<ButtonProps> = ({
 
   // 버튼 클릭 시 호출되는 함수입니다.
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!disabled && onClick) onClick(e);
+    if (!$disabled && onClick) onClick(e);
   };
 
   // 마우스 눌렀을 때 상태를 true로 설정
@@ -53,11 +53,11 @@ const Button: React.FC<ButtonProps> = ({
       onMouseUp={handleMouseUp}
       size={size}
       $padding={$padding}
-      fontSize={fontSize}
+      $fontSize={$fontSize}
       $active={isActive} // 현재 active 상태를 전달
-      disabled={disabled}
-      backgroundColor={backgroundColor}
-      hoverBackgroundColor={hoverBackgroundColor}>
+      $disabled={$disabled}
+      $backgroundColor={$backgroundColor}
+      $hoverBackgroundColor={$hoverBackgroundColor}>
       {isLoading ? <LoadingSpinner width="2rem" /> : children}
     </StyledButton>
   );
