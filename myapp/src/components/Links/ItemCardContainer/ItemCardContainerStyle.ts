@@ -29,6 +29,7 @@ export const NoLink = styled.div`
   font-size: 1.4rem;
   font-weight: 400;
   color: #000;
+  margin-bottom: 100px;
   @media screen and (max-width: ${BREAKPOINTS.largeDesktop}) and (min-width: ${BREAKPOINTS.tablet}) {
     font-size: 1.6rem;
   }
