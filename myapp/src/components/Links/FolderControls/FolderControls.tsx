@@ -41,21 +41,17 @@ const FolderControls = ({
   };
   return (
     <FolderControlsContainer>
-      {linkListInfo.totalCount ? (
-        <EditFolder onClick={openEditModal}>
-          <FolderControlsImg src={penIcon} alt="penIcon" />
-          <p>이름 변경</p>
-          <EditFolderModal
-            isModalOpen={isEditModalOpen}
-            setSelectedFolderInfo={setSelectedFolderInfo}
-            closeModal={closeEditModal}
-            folderId={selectedFolderInfo?.id}
-            setFolderList={setFolderList}
-          />
-        </EditFolder>
-      ) : (
-        ''
-      )}
+      <EditFolder onClick={openEditModal}>
+        <FolderControlsImg src={penIcon} alt="penIcon" />
+        <p>이름 변경</p>
+        <EditFolderModal
+          isModalOpen={isEditModalOpen}
+          setSelectedFolderInfo={setSelectedFolderInfo}
+          closeModal={closeEditModal}
+          folderId={selectedFolderInfo?.id}
+          setFolderList={setFolderList}
+        />
+      </EditFolder>
 
       <EditFolder onClick={openDeleteModal}>
         <FolderControlsImg src={deleteIcon} alt="deleteIcon" />

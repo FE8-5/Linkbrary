@@ -11,7 +11,7 @@ export interface ButtonProps {
   // 버튼의 크기를 설정하는 객체
   // - `width`: 버튼의 너비를 설정합니다. (예: '10rem')
   // - `height`: 버튼의 높이를 설정합니다. (예: '4rem')
-  padding?: {
+  $padding?: {
     vertical?: string;
     horizontal?: string;
   };
