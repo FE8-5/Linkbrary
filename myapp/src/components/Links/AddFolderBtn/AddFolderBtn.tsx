@@ -6,9 +6,10 @@ import { GetAllFoldersRes } from '../../../types/folderTypes';
 
 interface AddFolderBtnProps {
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddFolderBtn = ({ setFolderList }: AddFolderBtnProps) => {
+const AddFolderBtn = ({ setFolderList, setUpdateLinks }: AddFolderBtnProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -29,7 +30,12 @@ const AddFolderBtn = ({ setFolderList }: AddFolderBtnProps) => {
         <span> 폴더추가</span>
         <PlusIcon src={addIcon} />
       </AddFolderButton>
-      <AddFolderModal isModalOpen={isModalOpen} closeModal={closeModal} setFolderList={setFolderList} />
+      <AddFolderModal
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        setFolderList={setFolderList}
+        setUpdateLinks={setUpdateLinks}
+      />
     </>
   );
 };

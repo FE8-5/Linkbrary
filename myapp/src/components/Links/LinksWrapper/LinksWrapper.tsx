@@ -15,11 +15,13 @@ import useGetFolderList from '../../../hooks/useGetFolderList';
 interface LinksWrapperProps {
   isNewItem: boolean;
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+  updateLinks: boolean;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
+const LinksWrapper = ({ isNewItem, setIsNewItem, setUpdateLinks, updateLinks }: LinksWrapperProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const { data: folderList, setData: setFolderList, isLoading: folderListIsLoading } = useGetFolderList();
+  const { data: folderList, setData: setFolderList, isLoading: folderListIsLoading } = useGetFolderList(updateLinks);
   const [selectedFolderInfo, setSelectedFolderInfo] = useState<GetAllFoldersRes | undefined>();
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
   const [isLoading, setIsLoading] = useState(true); // 카드 컨테이너 로딩 상태관리
@@ -117,6 +119,7 @@ const LinksWrapper = ({ isNewItem, setIsNewItem }: LinksWrapperProps) => {
         onClick={handleFolderClick}
         selectedFolderId={selectedFolderInfo?.id}
         folderListIsLoading={folderListIsLoading}
+        setUpdateLinks={setUpdateLinks}
       />
       <SelectedFolderControls
         selectedFolderInfo={selectedFolderInfo}

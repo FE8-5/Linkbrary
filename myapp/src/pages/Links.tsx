@@ -6,12 +6,18 @@ import Footer from '../components/@Shared/Footer/Footer';
 
 function Links() {
   const [isNewItem, setIsNewItem] = useState(false);
+  const [updateLinks, setUpdateLinks] = useState<boolean>(false);
 
   return (
     <>
       <Header />
-      <AddLink setIsNewItem={setIsNewItem} />
-      <LinksWrapper isNewItem={isNewItem} setIsNewItem={setIsNewItem} />
+      <AddLink setIsNewItem={setIsNewItem} updateLinks={updateLinks} setUpdateLinks={setUpdateLinks} />
+      <LinksWrapper
+        isNewItem={isNewItem}
+        setIsNewItem={setIsNewItem}
+        updateLinks={updateLinks}
+        setUpdateLinks={setUpdateLinks}
+      />
       <Footer />
     </>
   );
