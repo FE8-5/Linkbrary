@@ -19,7 +19,7 @@ export const AddFolderButton = styled.button`
   bottom: 5rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 99;
+  z-index: 9;
   padding: 0.8rem 2.4rem;
   white-space: nowrap;
   @media screen and (min-width: ${BREAKPOINTS.tablet}) {
