@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { getAllFolders } from '../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../types/folderTypes';
 
-const useGetFolderList = () => {
-  const [data, setData] = useState<GetAllFoldersRes[]>();
+const useGetFolderList = (updateLinks?: boolean) => {
+  const [data, setData] = useState<GetAllFoldersRes[] | undefined>();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -22,7 +22,7 @@ const useGetFolderList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [updateLinks]);
 
   return { data, setData, isLoading, error };
 };

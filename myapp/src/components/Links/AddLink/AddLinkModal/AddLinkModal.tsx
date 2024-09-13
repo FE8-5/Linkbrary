@@ -19,12 +19,13 @@ import { addLink } from '../../../../apis/LinksPageApi/linkApi';
 interface ModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
-  folderList: GetAllFoldersRes[];
+  folderList: GetAllFoldersRes[] | undefined;
   linkUrl: string;
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewItem }: ModalProps) => {
+const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewItem, setUpdateLinks }: ModalProps) => {
   const [selectedFolderId, setSelectedFolderId] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
@@ -42,6 +43,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
       try {
         await addLink(linkUrl, selectedFolderId).then(() => {
           setIsNewItem(prev => !prev);
+          setUpdateLinks(prev => !prev);
         }); // 선택된 폴더 id로 API 호출
         closeModal();
       } catch (err) {
@@ -76,7 +78,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
               <Folder
                 key={folder.id}
                 onClick={() => handleFolderClick(folder.id)}
-                isSelected={selectedFolderId === folder.id}>
+                $isSelected={selectedFolderId === folder.id}>
                 <FolderInfo>
                   <FolderTitle>{folder.name}</FolderTitle>
                   <LinkNum>{folder.linkCount}개 링크</LinkNum>
@@ -92,7 +94,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
           onClick={handleAddLinkClick}
           size={{ width: '100%', height: '3rem' }}
           disabled={disabled}
-          padding={{ vertical: '2.6rem' }}>
+          $padding={{ vertical: '2.6rem' }}>
           추가하기
         </Button>
       </CommonModal>
