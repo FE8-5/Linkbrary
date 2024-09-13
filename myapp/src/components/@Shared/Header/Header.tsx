@@ -14,11 +14,13 @@ import {
 import { useEffect, useState } from 'react';
 import { getUserInfo } from '../../../apis/AuthApi/authApi';
 import { UserRes } from '../../../types/authTypes';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [userProfile, setUserProfile] = useState<UserRes>();
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLoginBtn = () => {
@@ -35,9 +37,15 @@ const Header = () => {
   };
 
   const fetchUserInfo = async () => {
-    const response = await getUserInfo();
-
-    setUserProfile(response);
+    setIsLoading(true);
+    try {
+      const response = await getUserInfo();
+      setUserProfile(response);
+    } catch (error) {
+      console.error('유저정보를 가져오지 못했습니다:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const isTokenExpired = (token: string): boolean => {
@@ -78,8 +86,14 @@ const Header = () => {
           <ProFileSection>
             <FavoriteBtn to="/favorite">⭐️ 즐겨찾기</FavoriteBtn>
             <ProfileBtn onClick={handleClickProfileBtn}>
-              <ProfileImg src={userProfile?.imageSource} alt="profileImg" />
-              <ProfileNickName>{userProfile?.name}</ProfileNickName>
+              {isLoading ? (
+                <LoadingSpinner width="2rem" />
+              ) : (
+                <>
+                  <ProfileImg src={userProfile?.imageSource} alt="profileImg" />
+                  <ProfileNickName>{userProfile?.name}</ProfileNickName>
+                </>
+              )}
               <LogoutBtn $show={isVisible} onClick={handleLogoutBtn}>
                 로그아웃
               </LogoutBtn>
