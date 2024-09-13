@@ -25,7 +25,7 @@ export const FolderList = styled.div`
   margin-bottom: 2rem;
 `;
 
-export const Folder = styled.div<{ isSelected: boolean }>`
+export const Folder = styled.div<{ $isSelected: boolean }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,7 +34,7 @@ export const Folder = styled.div<{ isSelected: boolean }>`
   line-height: 2.4rem;
   padding: 0.5rem;
   border-radius: 0.8rem;
-  background-color: ${({ isSelected }) => (isSelected ? 'var(--gray20)' : 'transparent')};
+  background-color: ${({ $isSelected }) => ($isSelected ? 'var(--gray20)' : 'transparent')};
   &:hover {
     background-color: var(--gray20);
   }

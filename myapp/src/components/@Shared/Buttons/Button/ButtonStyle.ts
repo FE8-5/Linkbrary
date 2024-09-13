@@ -19,7 +19,7 @@ export const StyledButton = styled.button<ButtonProps>`
   border-radius: 0.8rem;
   width: ${props => props.size?.width || 'auto'}; // 버튼의 너비
   height: ${props => props.size?.height || 'auto'}; // 버튼의 높이
-  padding: ${props => `${props.padding?.vertical || '1rem'} ${props.padding?.horizontal || '1.6rem'}`};
+  padding: ${props => `${props.$padding?.vertical || '1rem'} ${props.$padding?.horizontal || '1.6rem'}`};
   // padding을 수직(vertical)과 수평(horizontal)으로 분리하여 설정
   font-size: ${props => props.fontSize || '1.4rem'}; // 버튼 텍스트의 폰트 크기
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')}; // 버튼의 활성화 여부에 따라 마우스 커서를 변경

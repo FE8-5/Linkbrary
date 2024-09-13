@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   size = {},
-  padding = {},
+  $padding = {},
   fontSize = '1.6rem',
   disabled = false,
   backgroundColor,
@@ -52,7 +52,7 @@ const Button: React.FC<ButtonProps> = ({
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       size={size}
-      padding={padding}
+      $padding={$padding}
       fontSize={fontSize}
       $active={isActive} // 현재 active 상태를 전달
       disabled={disabled}
