@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '../../../@Shared/Buttons/Button/Button';
 import CommonModal from '../../../@Shared/CommonModal/CommonModal';
-import { deleteFolder } from '../../../../apis/LinksPageApi/forderApi';
 import { GetAllFoldersRes } from '../../../../types/folderTypes';
 import { DeleteFolderName, DeleteFolderTitle } from './DeleteFolderModalSyle';
 import useDeleteFolder from '../../../../hooks/useDeleteFolder';
@@ -13,6 +12,7 @@ interface DeleteModalProps {
   folderId: number | undefined;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
   setSelectedFolderInfo: Dispatch<SetStateAction<GetAllFoldersRes | undefined>>;
+  setDeleteFolderState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DeleteFolderModal = ({
@@ -22,12 +22,14 @@ const DeleteFolderModal = ({
   folderId,
   setFolderList,
   setSelectedFolderInfo,
+  setDeleteFolderState,
 }: DeleteModalProps) => {
   const { isLoading, disabled, fetchData } = useDeleteFolder(folderId);
 
   const handleDeleteFolder = async () => {
-    fetchData();
+    await fetchData();
     setFolderList(prevFolders => prevFolders?.filter(folder => folder.id !== folderId));
+    setDeleteFolderState(prev => !prev);
     setSelectedFolderInfo(undefined);
     closeModal();
   };
