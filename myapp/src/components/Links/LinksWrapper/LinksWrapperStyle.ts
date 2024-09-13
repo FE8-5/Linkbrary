@@ -6,8 +6,12 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem auto;
+  margin: 5rem 1.5rem;
   gap: 5rem;
+
+  @media screen and (min-width: ${BREAKPOINTS.largeDesktop}) {
+    margin: 5rem auto;
+  }
 `;
 
 export const SearchResultsContent = styled.p`
