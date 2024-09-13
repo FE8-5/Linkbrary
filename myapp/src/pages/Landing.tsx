@@ -2,11 +2,11 @@ import styles from '../styles/Landing/Landing.module.css';
 import Footer from '../components/@Shared/Footer/Footer';
 import Header from '../components/@Shared/Header/Header';
 import { useNavigate } from 'react-router-dom';
-import homeHeroImg from '../assets/images/home-hero-img.png';
-import saveLinkImg from '../assets/images/save-link-img.png';
-import manageLinkImg from '../assets/images/manage-link-img.png';
-import shareLinkImg from '../assets/images/share-link-img.png';
-import searchLinkImg from '../assets/images/search-link-img.png';
+import homeHeroImg from '../assets/Images/home-hero-img.png';
+import saveLinkImg from '../assets/Images/save-link-img.png';
+import manageLinkImg from '../assets/Images/manage-link-img.png';
+import shareLinkImg from '../assets/Images/share-link-img.png';
+import searchLinkImg from '../assets/Images/search-link-img.png';
 
 const Page: React.FC = () => {
   const navigate = useNavigate();
