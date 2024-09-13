@@ -1,9 +1,15 @@
+import Footer from '../components/@Shared/Footer/Footer';
+import FavoriteWrapper from '../components/Links/FavoriteWrapper/FavoriteWrapper';
+import Header from './../components/@Shared/Header/Header';
+
 function Favorite() {
   return (
     <>
-      <p>즐겨찾기 페이지</p>
+      <Header />
+      <FavoriteWrapper />
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Favorite;
