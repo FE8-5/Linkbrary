@@ -13,7 +13,6 @@ interface AddLinkProps {
 
 const AddLink = ({ setIsNewItem, setUpdateLinks, updateLinks }: AddLinkProps) => {
   const [value, setValue] = useState<string>('');
-
   const { data: folderList } = useGetFolderList(updateLinks);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 

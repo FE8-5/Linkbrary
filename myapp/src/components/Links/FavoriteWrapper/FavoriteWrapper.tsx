@@ -4,8 +4,7 @@ import { ItemLinks } from '../../../types/linkTypes';
 import { BREAKPOINTS_NUMERIC } from '../../../constatnts/Breakpoint';
 import { getFavorites } from '../../../apis/LinksPageApi/linkApi';
 import { useResizeDebounceEffect } from '../../../hooks/useResizeDebounceEffect ';
-import { FavoriteItemContainer, FavoriteLinkContainer } from './FavoriteWrapperStyle';
-import Footer from '../../@Shared/Footer/Footer';
+import { FavoriteContainer, FavoriteItemContainer, FavoriteLinkContainer } from './FavoriteWrapperStyle';
 
 function FavoriteWrapper() {
   const [linkListInfo, setLinkListInfo] = useState<ItemLinks>({ totalCount: 0, list: [] });
@@ -50,7 +49,7 @@ function FavoriteWrapper() {
   useResizeDebounceEffect(handleResize);
 
   return (
-    <>
+    <FavoriteContainer>
       <FavoriteLinkContainer>⭐️ 즐겨찾기</FavoriteLinkContainer>
       <FavoriteItemContainer>
         <ItemCardContainer
@@ -63,8 +62,7 @@ function FavoriteWrapper() {
           setCurrentPage={setCurrentPage}
         />
       </FavoriteItemContainer>
-      <Footer />
-    </>
+    </FavoriteContainer>
   );
 }
 

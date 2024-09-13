@@ -1,5 +1,5 @@
 import ItemCard from '../ItemCard/ItemCard';
-import { ItemCardGrid } from './ItemCardContainerStyle';
+import { ItemCardGrid, NoLink } from './ItemCardContainerStyle';
 import { ItemLinks } from '../../../types/linkTypes';
 import Pagination from '../Pagination/Pagination';
 import {
@@ -36,7 +36,7 @@ function ItemCardContainer({
           { length: pageSize },
           (_, i) =>
             i <= pageSize && (
-              <SkeletonCardContainer>
+              <SkeletonCardContainer key={pageSize + currentPage + i}>
                 <SkeletonCardInfoBox>
                   <SkeletonCardTimeDiff />
                   <SkeletonCardDescription />
@@ -51,6 +51,7 @@ function ItemCardContainer({
 
   return (
     <>
+      {!isLoading && linkListInfo.list.length <= 0 && <NoLink>저장된 링크가 없습니다</NoLink>}
       <ItemCardGrid>
         {linkListInfo.list.map(item => (
           <ItemCard key={item.id} item={item} setIsNewItem={setIsNewItem} />

@@ -30,6 +30,9 @@ function Pagination({ totalItems, pageSize, pageCount, currentPage, setCurrentPa
   const onRightArrowClick = (currentPage: number) => {
     setCurrentPage(currentPage + 1);
   };
+  if (totalItems === 0) {
+    return;
+  }
 
   return (
     <PaginationContainer>
