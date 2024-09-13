@@ -92,8 +92,8 @@ const LoginForm: React.FC = () => {
       <Button
         type="submit"
         size={{ width: '100%', height: '5.3rem' }}
-        padding={{ vertical: '1.6rem', horizontal: 'auto' }}
-        fontSize="1.8rem">
+        $padding={{ vertical: '1.6rem', horizontal: 'auto' }}
+        $fontSize="1.8rem">
         로그인
       </Button>
     </StyledLoginForm>

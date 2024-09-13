@@ -54,9 +54,9 @@ const EditModal = ({ item, setIsNewItem, isModalOpen, closeModal, setIsEditModal
         onClick={onEdit}
         isLoading={isLoadingEdit}
         size={{ width: '28rem', height: '5.1rem' }}
-        padding={{ vertical: '1.6rem', horizontal: '2rem' }}
-        disabled={disabled}
-        fontSize="1.6rem">
+        $padding={{ vertical: '1.6rem', horizontal: '2rem' }}
+        $disabled={disabled}
+        $fontSize="1.6rem">
         수정하기
       </Button>
     </CommonModal>

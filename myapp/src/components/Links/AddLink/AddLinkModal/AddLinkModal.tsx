@@ -93,7 +93,7 @@ const AddLinkModal = ({ isModalOpen, closeModal, folderList, linkUrl, setIsNewIt
           isLoading={isLoading}
           onClick={handleAddLinkClick}
           size={{ width: '100%', height: '3rem' }}
-          disabled={disabled}
+          $disabled={disabled}
           $padding={{ vertical: '2.6rem' }}>
           추가하기
         </Button>
