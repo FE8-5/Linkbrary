@@ -8,15 +8,17 @@ interface ModalProps {
   isModalOpen: boolean;
   closeModal: () => void;
   setFolderList: Dispatch<SetStateAction<GetAllFoldersRes[] | undefined>>;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddFolderModal = ({ isModalOpen, closeModal, setFolderList }: ModalProps) => {
+const AddFolderModal = ({ isModalOpen, closeModal, setFolderList, setUpdateLinks }: ModalProps) => {
   const [value, setValue] = useState<string>('');
 
   const fetchAddFolder = async (name: string) => {
     try {
       const response: OtherFolderRes = await addFolder(name);
       setFolderList(prevItems => [response, ...(prevItems || [])]);
+      setUpdateLinks(prev => !prev);
     } catch (error) {
       console.error('오류가 발생했습니다!!');
     }

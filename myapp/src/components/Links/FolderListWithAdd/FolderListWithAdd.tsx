@@ -10,6 +10,7 @@ interface FolderListWithAddProps {
   onClick: (folderId: number) => void;
   selectedFolderId: number | undefined;
   folderListIsLoading: boolean;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const FolderListWithAdd = ({
@@ -18,6 +19,7 @@ const FolderListWithAdd = ({
   onClick,
   selectedFolderId,
   folderListIsLoading,
+  setUpdateLinks,
 }: FolderListWithAddProps) => {
   return (
     <FolderListWithAddContainer>
@@ -27,7 +29,7 @@ const FolderListWithAdd = ({
         selectedFolderId={selectedFolderId}
         folderListIsLoading={folderListIsLoading}
       />
-      <AddFolderBtn setFolderList={setFolderList} />
+      <AddFolderBtn setFolderList={setFolderList} setUpdateLinks={setUpdateLinks} />
     </FolderListWithAddContainer>
   );
 };

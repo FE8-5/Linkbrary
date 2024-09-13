@@ -7,11 +7,13 @@ import useGetFolderList from '../../../hooks/useGetFolderList';
 
 interface AddLinkProps {
   setIsNewItem: React.Dispatch<React.SetStateAction<boolean>>;
+  updateLinks: boolean;
+  setUpdateLinks: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const AddLink = ({ setIsNewItem }: AddLinkProps) => {
+const AddLink = ({ setIsNewItem, setUpdateLinks, updateLinks }: AddLinkProps) => {
   const [value, setValue] = useState<string>('');
-  const [updateLinks, setUpdateLinks] = useState<boolean>(false);
+
   const { data: folderList } = useGetFolderList(updateLinks);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
