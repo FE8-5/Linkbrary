@@ -63,6 +63,7 @@ export const ProfileNickName = styled.span`
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.6rem;
+  white-space: nowrap;
   @media screen and (min-width: ${BREAKPOINTS.tablet}) {
     display: block;
   }

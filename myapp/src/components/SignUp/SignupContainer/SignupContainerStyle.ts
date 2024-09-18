@@ -12,16 +12,17 @@ export const StyledSignupContainer = styled.div`
   // 모바일에서 최대 너비와 상단 여백 설정
   max-width: 32.5rem;
   margin-top: 12rem;
+  margin-bottom: 5rem;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     // 태블릿에서 최대 너비와 상단 여백 설정
     max-width: 40rem;
-    margin-top: 20rem;
+    margin-top: 15rem;
   }
 
   @media (min-width: ${BREAKPOINTS.largeDesktop}) {
     // 데스크탑에서 최대 너비와 상단 여백 설정
     max-width: 40rem;
-    margin-top: 23.8rem;
+    margin-top: 15rem;
   }
 `;
